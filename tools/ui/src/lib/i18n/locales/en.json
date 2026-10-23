@@ -305,6 +305,9 @@
     "delete": "Delete",
     "more_actions": "More actions",
     "deselect_conversation": "Deselect {name}",
-    "select_conversation": "Select {name}"
+    "select_conversation": "Select {name}",
+    "no_results_found": "No results found",
+    "start_typing": "Start typing to see results",
+    "search_results": "Search results"
   }
 }

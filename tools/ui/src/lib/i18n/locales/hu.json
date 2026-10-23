@@ -305,6 +305,9 @@
     "delete": "Törlés",
     "more_actions": "További műveletek",
     "deselect_conversation": "{name} kijelölésének megszüntetése",
-    "select_conversation": "{name} kijelölése"
+    "select_conversation": "{name} kijelölése",
+    "no_results_found": "Nincs találat",
+    "start_typing": "Gépelj a találatok megjelenítéséhez",
+    "search_results": "Keresési találatok"
   }
 }
