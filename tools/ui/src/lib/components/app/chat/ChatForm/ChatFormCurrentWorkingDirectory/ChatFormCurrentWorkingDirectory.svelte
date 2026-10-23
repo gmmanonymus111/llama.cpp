@@ -6,6 +6,7 @@
 	import * as Popover from '$lib/components/ui/popover';
 	import { DEFAULT_MOBILE_BREAKPOINT, HOME_TILDE, SEARCH, UI_DATA_ATTRS } from '$lib/constants';
 	import { BuiltInTool, GlobSearchType, KeyboardKey, ToolSource } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useDebouncedSearch } from '$lib/hooks/use-debounced-search.svelte';
 	import { usePickerNavigation } from '$lib/hooks/use-picker-navigation.svelte';
 	import { useScrollActiveRow } from '$lib/hooks/use-scroll-active-row.svelte';
@@ -53,6 +54,8 @@
 		query = $bindable('')
 	}: Props = $props();
 
+	let { t } = $derived(i18nStore);
+
 	// File System Access API is opt-in (Chrome / Edge / Opera): the popover
 	// exposes a "Browse" button only when available.
 	const pickerSupported =
@@ -71,8 +74,8 @@
 	);
 	const searchUnavailableMessage = $derived(
 		fileSearchKey === null
-			? 'File search is unavailable on this server - type a full path and press Enter'
-			: 'File search is disabled - type a full path and press Enter, or enable "Search files" in Settings > Tools'
+			? t('chat.file_search_unavailable')
+			: t('chat.file_search_disabled')
 	);
 
 	let searchInputRef: HTMLInputElement | null = $state(null);
@@ -247,7 +250,7 @@
 			} else {
 				// keep the previous cwd and fail visibly instead of committing a
 				// bare leaf name that would resolve against the server cwd
-				searchError = `Could not resolve "${handle.name}" to a server path`;
+				searchError = t('chat.could_not_resolve_path', { name: handle.name });
 			}
 		} catch (err) {
 			// user cancelled - silently ignore; other errors are logged
@@ -349,7 +352,7 @@
 		class="pointer-events-none absolute inset-0 opacity-0"
 		tabindex={-1}
 	>
-		<span class="sr-only">Open working directory picker</span>
+		<span class="sr-only">{t('chat.open_working_directory_picker')}</span>
 	</Popover.Trigger>
 
 	<Popover.Content
@@ -369,7 +372,7 @@
 				bind:value={query}
 				class="w-full"
 				onClose={closePicker}
-				placeholder="Choose working directory"
+				placeholder={t('chat.choose_working_directory')}
 			/>
 
 			{#if !fileSearchEnabled}
@@ -395,7 +398,7 @@
 				>
 					<FolderOpen class="size-4 shrink-0 text-muted-foreground" />
 
-					<span>Browse</span>
+					<span>{t('chat.browse')}</span>
 				</button>
 			{/if}
 
@@ -403,7 +406,7 @@
 				<div aria-hidden="true" class="-mx-2 my-2 h-px bg-border/20"></div>
 
 				<span class="px-2 py-1.5 font-mono text-[10px]">
-					Searching in:
+					{t('chat.searching_in')}
 
 					<span class="truncate text-muted-foreground/70" title={searchScope}
 						>{abbreviateHome(searchScope, homeBase)}</span

@@ -6,6 +6,7 @@
 	import { INPUT_CLASSES } from '$lib/constants';
 	import { getChatMessageEditContext } from '$lib/contexts';
 	import { KeyboardKey, MessageRole } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { settingsStore } from '$lib/stores';
 	import { autoResizeTextarea, isIMEComposing } from '$lib/utils';
 
@@ -18,6 +19,8 @@
 	let { class: className = '', message, textareaElement = $bindable() }: Props = $props();
 
 	const editCtx = getChatMessageEditContext();
+
+	let { t } = $derived(i18nStore);
 
 	function handleEditKeydown(event: KeyboardEvent) {
 		if (event.key === KeyboardKey.ENTER && !event.shiftKey && !isIMEComposing(event)) {
@@ -76,7 +79,7 @@
 </script>
 
 <div
-	aria-label="System message with actions"
+	aria-label={t('chat.system_message_with_actions')}
 	class="group flex flex-col items-end gap-3 md:gap-2 {className}"
 	role="group"
 >
@@ -90,7 +93,7 @@
 					editCtx.setContent(e.currentTarget.value);
 				}}
 				onkeydown={handleEditKeydown}
-				placeholder="Edit system message..."
+				placeholder={t('chat.edit_system_message')}
 				style="max-height: var(--max-message-height);"
 				value={editCtx.editedContent}
 			></textarea>
@@ -99,7 +102,7 @@
 				<Button class="h-8 px-3" onclick={editCtx.cancel} size="sm" variant="outline">
 					<X class="mr-1 h-3 w-3" />
 
-					Cancel
+					{t('common.cancel')}
 				</Button>
 
 				<Button
@@ -110,7 +113,7 @@
 				>
 					<Check class="mr-1 h-3 w-3" />
 
-					Save
+					{t('common.save')}
 				</Button>
 			</div>
 		</div>
@@ -163,7 +166,7 @@
 										size="sm"
 										variant="outline"
 									>
-										Show full system message
+										{t('chat.show_full_system_message')}
 									</Button>
 								</div>
 							{/if}
@@ -180,7 +183,7 @@
 									size="sm"
 									variant="outline"
 								>
-									Collapse System Message
+									{t('chat.collapse_system_message')}
 								</Button>
 							</div>
 						{/if}

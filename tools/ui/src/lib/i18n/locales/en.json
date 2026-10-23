@@ -247,6 +247,18 @@
     "delete_conversation_title": "Delete Conversation",
     "max_effort_hint": "Maximum reasoning effort with extended context usage",
     "please_select_model_first": "Please select a model first",
-    "selected_model_not_available": "Selected model is not available, please select another"
+    "selected_model_not_available": "Selected model is not available, please select another",
+    "assistant_message_with_actions": "Assistant message with actions",
+    "user_message_with_actions": "User message with actions",
+    "system_message_with_actions": "System message with actions",
+    "preview_file": "Preview {name}",
+    "show_full_system_message": "Show full system message",
+    "collapse_system_message": "Collapse System Message",
+    "file_search_unavailable": "File search is unavailable on this server - type a full path and press Enter",
+    "file_search_disabled": "File search is disabled - type a full path and press Enter, or enable \"Search files\" in Settings > Tools",
+    "could_not_resolve_path": "Could not resolve \"{name}\" to a server path",
+    "open_working_directory_picker": "Open working directory picker",
+    "browse": "Browse",
+    "searching_in": "Searching in:"
   }
 }

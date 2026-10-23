@@ -10,6 +10,7 @@
 	} from '$lib/components/app';
 	import { getChatMessageEditContext } from '$lib/contexts';
 	import { MessageRole } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useProcessingState } from '$lib/hooks/use-processing-state.svelte';
 	import { chatStore, modelsStore, serverStore, settingsStore } from '$lib/stores';
 	import { modelLoadProgressText } from '$lib/utils';
@@ -37,6 +38,8 @@
 
 	// Get edit context
 	const editCtx = getChatMessageEditContext();
+
+	let { t } = $derived(i18nStore);
 
 	const isAgentic = $derived(hasAgenticContent(message, toolMessages));
 	const processingState = useProcessingState();
@@ -133,7 +136,7 @@
 	style:--last-user-message-height={lastUserMessageHeight > 0
 		? `${lastUserMessageHeight}px`
 		: undefined}
-	aria-label="Assistant message with actions"
+	aria-label={t('chat.assistant_message_with_actions')}
 	class="chat-message-assistant text-md group w-full leading-7.5 {className}"
 	role="group"
 >

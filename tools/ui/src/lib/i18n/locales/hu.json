@@ -247,6 +247,18 @@
     "delete_conversation_title": "Beszélgetés törlése",
     "max_effort_hint": "Maximális gondolkodási erőfeszítés kibővített kontextus használatával",
     "please_select_model_first": "Kérlek, először válassz ki egy modellt",
-    "selected_model_not_available": "A kiválasztott modell nem érhető el, kérlek válassz mást"
+    "selected_model_not_available": "A kiválasztott modell nem érhető el, kérlek válassz mást",
+    "assistant_message_with_actions": "Asszisztens üzenet műveletekkel",
+    "user_message_with_actions": "Felhasználói üzenet műveletekkel",
+    "system_message_with_actions": "Rendszerüzenet műveletekkel",
+    "preview_file": "{name} előnézete",
+    "show_full_system_message": "Teljes rendszerüzenet megjelenítése",
+    "collapse_system_message": "Rendszerüzenet összecsukása",
+    "file_search_unavailable": "A fájlkeresés nem érhető el ezen a szerveren - gépelj be egy teljes elérési utat és nyomj Entert",
+    "file_search_disabled": "A fájlkeresés le van tiltva - gépelj be egy teljes elérési utat és nyomj Entert, vagy engedélyezd a \"Fájlok keresése\" opciót a Beállítások > Eszközök menüpontban",
+    "could_not_resolve_path": "Nem sikerült feloldani a \"{name}\" elérési utat a szerveren",
+    "open_working_directory_picker": "Munkakönyvtár kiválasztó megnyitása",
+    "browse": "Tallózás",
+    "searching_in": "Keresés itt:"
   }
 }

@@ -7,6 +7,7 @@
 	} from '$lib/components/app/chat';
 	import { getChatMessageEditContext } from '$lib/contexts';
 	import { ChatMessageStatisticsMode, MessageRole } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useProcessingState } from '$lib/hooks/use-processing-state.svelte';
 	import { chatStore, settingsStore } from '$lib/stores';
 
@@ -27,6 +28,8 @@
 	// Get contexts
 	const editCtx = getChatMessageEditContext();
 	const processingState = useProcessingState();
+
+	let { t } = $derived(i18nStore);
 
 	const currentConfig = $derived(settingsStore.config);
 	const isActivelyProcessing = $derived(isLastUserMessage && chatStore.isLoading);
@@ -61,7 +64,7 @@
 </script>
 
 <div
-	aria-label="User message with actions"
+	aria-label={t('chat.user_message_with_actions')}
 	class="chat-message-user group flex flex-col items-end gap-3 md:gap-2 {className}"
 	role="group"
 >
