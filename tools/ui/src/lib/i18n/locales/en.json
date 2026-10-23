@@ -259,6 +259,8 @@
     "could_not_resolve_path": "Could not resolve \"{name}\" to a server path",
     "open_working_directory_picker": "Open working directory picker",
     "browse": "Browse",
-    "searching_in": "Searching in:"
+    "searching_in": "Searching in:",
+    "remove": "Remove",
+    "waiting_for_runtime_info": "Waiting for runtime info..."
   }
 }

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { X } from '@lucide/svelte';
 	import { ActionIcon } from '$lib/components/app';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		class?: string;
@@ -27,6 +28,8 @@
 		readonly = false,
 		width = 'w-auto'
 	}: Props = $props();
+
+	let { t } = $derived(i18nStore);
 </script>
 
 {#snippet image()}
@@ -38,7 +41,7 @@
 >
 	{#if onclick}
 		<button
-			aria-label="Preview {name}"
+			aria-label={t('chat.preview_file', { name })}
 			class="block h-full w-full rounded-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
 			{onclick}
 			type="button"
@@ -54,12 +57,12 @@
 			class="absolute top-1 right-1 flex items-center justify-center opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
 		>
 			<ActionIcon
-				class="text-white"
-				icon={X}
-				onclick={() => onRemove?.(id)}
-				stopPropagationOnClick
-				tooltip="Remove"
-			/>
+								class="text-white"
+								icon={X}
+								onclick={() => onRemove?.(id)}
+								stopPropagationOnClick
+								tooltip={t('chat.remove')}
+							/>
 		</div>
 	{/if}
 </div>

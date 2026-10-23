@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ToolCallBlock from './ToolCallBlock.svelte';
 	import { XCircle } from '@lucide/svelte';
+	import { i18nStore } from '$lib/i18n';
 	import { toolsStore } from '$lib/stores';
 	import type { AgenticSection } from '$lib/types';
 	import { abbreviateHome } from '$lib/utils';
@@ -13,6 +14,8 @@
 	}
 
 	let { isStreaming, onToggle, open, section }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	type GetInfoMeta = {
 		os?: string;
@@ -55,7 +58,7 @@
 	{open}
 	{section}
 	spinIconWhenActive
-	title="Runtime info"
+	title={t('chat.runtime_info')}
 >
 	{#snippet children(meta, _ctx)}
 		{#if meta?.errorMessage}
@@ -119,7 +122,7 @@
 			</div>
 		{:else}
 			<div class="rounded bg-muted/20 p-2 text-xs text-muted-foreground/70 italic">
-				Waiting for runtime info...
+				{t('chat.waiting_for_runtime_info')}
 			</div>
 		{/if}
 	{/snippet}

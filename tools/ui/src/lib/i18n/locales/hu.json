@@ -259,6 +259,8 @@
     "could_not_resolve_path": "Nem sikerült feloldani a \"{name}\" elérési utat a szerveren",
     "open_working_directory_picker": "Munkakönyvtár kiválasztó megnyitása",
     "browse": "Tallózás",
-    "searching_in": "Keresés itt:"
+    "searching_in": "Keresés itt:",
+    "remove": "Eltávolítás",
+    "waiting_for_runtime_info": "Várakozás a futtatási információkra..."
   }
 }
