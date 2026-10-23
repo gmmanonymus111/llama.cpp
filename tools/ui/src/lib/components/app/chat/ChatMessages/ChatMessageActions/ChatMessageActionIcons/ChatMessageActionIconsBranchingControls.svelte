@@ -2,6 +2,7 @@
 	import { ChevronLeft, ChevronRight } from '@lucide/svelte';
 	import { ActionIcon } from '$lib/components/app';
 	import { getChatMessageActionsContext } from '$lib/contexts';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		class?: string;
@@ -10,6 +11,8 @@
 	let { class: className = '' }: Props = $props();
 
 	const messageActions = getChatMessageActionsContext();
+
+	let { t } = $derived(i18nStore);
 
 	let siblingInfo = $derived(messageActions.siblingInfo);
 
@@ -25,7 +28,7 @@
 
 {#if siblingInfo && siblingInfo.totalSiblings > 1}
 	<div
-		aria-label="Message version {siblingInfo.currentIndex + 1} of {siblingInfo.totalSiblings}"
+		aria-label={t('chat.message_version', { index: String(siblingInfo.currentIndex + 1), total: String(siblingInfo.totalSiblings) })}
 		class="flex items-center gap-1 text-xs text-muted-foreground {className}"
 		role="navigation"
 	>
@@ -34,7 +37,7 @@
 			disabled={!hasPrevious}
 			icon={ChevronLeft}
 			onclick={() => messageActions.navigateToSibling(previousSiblingId!)}
-			tooltip="Previous version"
+			tooltip={t('chat.previous_version')}
 		/>
 
 		<span class="px-1 font-mono text-xs">
@@ -46,7 +49,7 @@
 			disabled={!hasNext}
 			icon={ChevronRight}
 			onclick={() => messageActions.navigateToSibling(nextSiblingId!)}
-			tooltip="Next version"
+			tooltip={t('chat.next_version')}
 		/>
 	</div>
 {/if}

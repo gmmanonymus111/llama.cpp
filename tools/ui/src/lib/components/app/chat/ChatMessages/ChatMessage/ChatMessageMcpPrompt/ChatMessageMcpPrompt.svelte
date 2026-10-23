@@ -6,6 +6,7 @@
 	} from '$lib/components/app';
 	import { getChatMessageEditContext } from '$lib/contexts';
 	import { McpPromptVariant, MessageRole } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import type { DatabaseMessageExtraMcpPrompt } from '$lib/types';
 
 	interface Props {
@@ -18,10 +19,12 @@
 
 	// Get edit context
 	const editCtx = getChatMessageEditContext();
+
+	let { t } = $derived(i18nStore);
 </script>
 
 <div
-	aria-label="MCP Prompt message with actions"
+	aria-label={t('chat.mcp_prompt_message_with_actions')}
 	class="group flex flex-col items-end gap-3 md:gap-2 {className}"
 	role="group"
 >

@@ -7,6 +7,7 @@
 	import { cn } from '$lib/components/ui/utils';
 	import { TOOL_SERVER_LABELS } from '$lib/constants';
 	import { ToolPermissionDecision, ToolSource } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { toolsStore } from '$lib/stores';
 
 	interface Props {
@@ -16,12 +17,13 @@
 	}
 
 	let { onDecision, serverLabel, toolName }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 </script>
 
 <ChatMessageActionCard icon={ShieldQuestion}>
 	{#snippet message()}
-		Allow use of <span class="font-semibold">{toolName}</span>{#if serverLabel}
-			&nbsp;from <span class="font-semibold">{serverLabel}</span>{/if}?
+		{t('chat.allow_use_of_tool', { tool: `<span class="font-semibold">${toolName}</span>`, server: serverLabel ? `&nbsp;from <span class="font-semibold">${serverLabel}</span>` : '' })}
 	{/snippet}
 
 	{#snippet actions()}
@@ -33,13 +35,13 @@
 					size="sm"
 					variant="secondary"
 				>
-					Allow once
+					{t('chat.allow_once')}
 				</Button>
 
 				<ButtonGroup.Separator />
 
 				<DropdownMenu.Trigger
-					aria-label="More allow options"
+					aria-label={t('chat.more_allow_options')}
 					class={cn(
 						buttonVariants({ size: 'sm', variant: 'secondary' }),
 						'inline-flex cursor-pointer items-center !rounded-l-none !shadow-none !px-2'
@@ -51,13 +53,12 @@
 
 			<DropdownMenu.Content align="start" class="min-w-[8rem]">
 				<DropdownMenu.Item onclick={() => onDecision(ToolPermissionDecision.ALWAYS)}>
-					Always allow <pre>{toolName}</pre>
-					tool
+					{t('chat.always_allow_tool', { tool: toolName })}
 				</DropdownMenu.Item>
 
 				{#if serverLabel}
 					<DropdownMenu.Item onclick={() => onDecision(ToolPermissionDecision.ALWAYS_SERVER)}>
-						Always allow all tools from {serverLabel}
+						{t('chat.always_allow_server_tools', { server: serverLabel })}
 					</DropdownMenu.Item>
 				{:else}
 					{@const source = toolsStore.getToolSource(toolName)}
@@ -68,14 +69,14 @@
 								? TOOL_SERVER_LABELS[ToolSource.CUSTOM]
 								: 'MCP Tools'}
 					<DropdownMenu.Item onclick={() => onDecision(ToolPermissionDecision.ALWAYS_SERVER)}>
-						Approve all tools from {providerName}
+						{t('chat.approve_all_tools_from', { provider: providerName })}
 					</DropdownMenu.Item>
 				{/if}
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 
 		<Button onclick={() => onDecision(ToolPermissionDecision.DENY)} size="sm" variant="destructive">
-			Deny
+			{t('chat.deny')}
 		</Button>
 	{/snippet}
 </ChatMessageActionCard>

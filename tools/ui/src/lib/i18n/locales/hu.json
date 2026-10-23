@@ -202,7 +202,7 @@
     "mcp_prompt_message": "MCP prompt üzenet műveletekkel",
     "pdf_page": "PDF oldal",
     "more_options": "További engedélyezési lehetőségek",
-    "message_version": "{current}. üzenetverzió {total}-ból",
+    "message_version": "{index}. üzenetváltozat {total} közül",
     "edit_system_message": "Rendszerüzenet szerkesztése...",
     "copy": "Másolás",
     "copied": "Kimásolva",
@@ -261,6 +261,18 @@
     "browse": "Tallózás",
     "searching_in": "Keresés itt:",
     "remove": "Eltávolítás",
-    "waiting_for_runtime_info": "Várakozás a futtatási információkra..."
+    "waiting_for_runtime_info": "Várakozás a futtatási információkra...",
+    "previous_version": "Előző változat",
+    "next_version": "Következő változat",
+    "allow_use_of_tool": "Engedélyezed a {tool} {server}használatát?",
+    "allow_once": "Egyszer engedélyezés",
+    "more_allow_options": "További engedélyezési lehetőségek",
+    "always_allow_tool": "Mindig engedélyezze a {tool} eszközt",
+    "always_allow_server_tools": "Mindig engedélyezze a {server} összes eszközét",
+    "approve_all_tools_from": "Engedélyezze a(z) {provider} összes eszközét",
+    "deny": "Elutasítás",
+    "mcp_prompt_message_with_actions": "MCP kérés üzenet műveletekkel",
+    "pending_user_message": "Várakozó felhasználói üzenet",
+    "send_immediately": "Azonnali küldés"
   }
 }

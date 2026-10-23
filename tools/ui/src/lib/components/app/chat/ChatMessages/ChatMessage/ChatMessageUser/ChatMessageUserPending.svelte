@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ArrowUp, Edit, Trash2 } from '@lucide/svelte';
 	import { ActionIcon, ChatMessageEditForm, ChatMessageUserBubble } from '$lib/components/app';
+	import { i18nStore } from '$lib/i18n';
 	import { useChatMessageEditContext } from '$lib/hooks/use-chat-message-edit-context.svelte';
 
 	interface Props {
@@ -26,10 +27,12 @@
 		getExtras: () => extras,
 		onSave: (content, extras) => onEdit(content, extras)
 	});
+
+	let { t } = $derived(i18nStore);
 </script>
 
 <div
-	aria-label="Pending user message"
+	aria-label={t('chat.pending_user_message')}
 	class="group flex flex-col items-end gap-3 transition-opacity hover:opacity-80 md:gap-2 {className} sticky bottom-32"
 	role="group"
 >
@@ -50,11 +53,11 @@
 					<div
 						class="pointer-events-auto inset-0 flex items-center gap-1 opacity-0 transition-all duration-150 group-hover:opacity-100"
 					>
-						<ActionIcon icon={Edit} onclick={editCtx.handleEdit} tooltip="Edit" />
+						<ActionIcon icon={Edit} onclick={editCtx.handleEdit} tooltip={t('chat.edit_tooltip')} />
 
-						<ActionIcon icon={Trash2} onclick={onDelete} tooltip="Delete" />
+											<ActionIcon icon={Trash2} onclick={onDelete} tooltip={t('chat.delete_tooltip')} />
 
-						<ActionIcon icon={ArrowUp} onclick={onSendImmediately} tooltip="Send immediately" />
+											<ActionIcon icon={ArrowUp} onclick={onSendImmediately} tooltip={t('chat.send_immediately')} />
 					</div>
 				</div>
 			</div>

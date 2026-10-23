@@ -202,7 +202,7 @@
     "mcp_prompt_message": "MCP Prompt message with actions",
     "pdf_page": "PDF Page",
     "more_options": "More allow options",
-    "message_version": "Message version {current} of {total}",
+    "message_version": "Message version {index} of {total}",
     "edit_system_message": "Edit system message...",
     "copy": "Copy",
     "copied": "Copied",
@@ -261,6 +261,18 @@
     "browse": "Browse",
     "searching_in": "Searching in:",
     "remove": "Remove",
-    "waiting_for_runtime_info": "Waiting for runtime info..."
+    "waiting_for_runtime_info": "Waiting for runtime info...",
+    "previous_version": "Previous version",
+    "next_version": "Next version",
+    "allow_use_of_tool": "Allow use of {tool}{server}?",
+    "allow_once": "Allow once",
+    "more_allow_options": "More allow options",
+    "always_allow_tool": "Always allow {tool} tool",
+    "always_allow_server_tools": "Always allow all tools from {server}",
+    "approve_all_tools_from": "Approve all tools from {provider}",
+    "deny": "Deny",
+    "mcp_prompt_message_with_actions": "MCP Prompt message with actions",
+    "pending_user_message": "Pending user message",
+    "send_immediately": "Send immediately"
   }
 }
