@@ -7,6 +7,7 @@ import { toolsStore } from './tools.svelte';
 import { versionStore } from './version.svelte';
 import { browser } from '$app/environment';
 import { MigrationService } from '$lib/services/migration.service';
+import { i18nStore } from '$lib/i18n';
 
 let startup: Promise<void> | null = null;
 
@@ -20,6 +21,10 @@ export function initStores(): Promise<void> {
 		permissionsStore.initialize();
 		toolsStore.initialize();
 		void versionStore.initialize();
+
+		// Sync language setting to i18n store
+		const languageSetting = settingsStore.config.language ?? 'auto';
+		i18nStore.applyLanguageSetting(languageSetting);
 
 		// the full conversation list loads in the background; once it is back,
 		// prune persisted tabs against the conversations that still exist

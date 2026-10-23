@@ -16,6 +16,7 @@
 		SETTINGS_KEYS,
 		TOOLTIP_DELAY_DURATION
 	} from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { useKeyboardShortcuts } from '$lib/hooks/use-keyboard-shortcuts.svelte';
 	import { usePwa } from '$lib/hooks/use-pwa.svelte';
 	import { RouterService } from '$lib/services/router.service';
@@ -41,6 +42,12 @@
 
 	// migrations and store startup, ordered explicitly instead of import side effects
 	void initStores();
+
+	// Sync language setting changes to i18n store
+	$effect(() => {
+		const language = settingsStore.config[SETTINGS_KEYS.LANGUAGE] ?? 'auto';
+		i18nStore.applyLanguageSetting(language);
+	});
 
 	let innerHeight = $state<number | undefined>();
 	let innerWidth = $state(browser ? window.innerWidth : 0);

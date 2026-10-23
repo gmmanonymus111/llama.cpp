@@ -8,6 +8,7 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { ICON_CLASS_DEFAULT, SETTING_CONFIG_INFO, SETTINGS_KEYS } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { SettingsFieldType } from '$lib/enums/settings.enums';
 	import { modelsStore, serverStore, settingsStore } from '$lib/stores';
 	import { normalizeFloatingPoint } from '$lib/utils/precision';
@@ -21,6 +22,8 @@
 	}
 
 	let { fields, localConfig, onConfigChange, onThemeChange }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	// discover needs the hub metadata reads, so its checkbox is read-only while discover is on
 	let hubLocked = $derived(Boolean(localConfig[SETTINGS_KEYS.ENABLE_DISCOVER_MODELS]));
@@ -74,7 +77,7 @@
 
 				<div class="flex items-center gap-2">
 					<Label class="flex items-center gap-1.5 text-sm font-medium" for={field.key}>
-						{field.label}
+						{t(field.label)}
 
 						{#if field.isExperimental}
 							<FlaskConical class="h-3.5 w-3.5 text-muted-foreground" />
@@ -124,13 +127,13 @@
 
 				{#if field.help || SETTING_CONFIG_INFO[field.key]}
 					<p class="mt-1 text-xs text-muted-foreground">
-						{@html field.help || SETTING_CONFIG_INFO[field.key]}
+						{@html t(field.help || SETTING_CONFIG_INFO[field.key])}
 					</p>
 				{/if}
 			{:else if field.type === SettingsFieldType.TEXTAREA}
 				{#if field.label}
 					<Label class="block flex items-center gap-1.5 text-sm font-medium" for={field.key}>
-						{field.label}
+						{t(field.label)}
 
 						{#if field.isExperimental}
 							<FlaskConical class="h-3.5 w-3.5 text-muted-foreground" />
@@ -148,7 +151,7 @@
 
 				{#if field.help || SETTING_CONFIG_INFO[field.key]}
 					<p class="mt-1 text-xs text-muted-foreground">
-						{field.help || SETTING_CONFIG_INFO[field.key]}
+						{t(field.help || SETTING_CONFIG_INFO[field.key])}
 					</p>
 				{/if}
 
@@ -162,7 +165,7 @@
 						/>
 
 						<Label class="cursor-pointer text-sm font-normal" for="showSystemMessage">
-							Show system message in conversations
+							{t('settings.show_system_message_in_conversations')}
 						</Label>
 					</div>
 				{/if}
@@ -183,7 +186,7 @@
 
 				<div class="flex items-center gap-2">
 					<Label class="flex items-center gap-1.5 text-sm font-medium" for={field.key}>
-						{field.label}
+						{t(field.label)}
 
 						{#if field.isExperimental}
 							<FlaskConical class="h-3.5 w-3.5 text-muted-foreground" />
@@ -214,7 +217,7 @@
 									<IconComponent class={ICON_CLASS_DEFAULT} />
 								{/if}
 
-								{selectedOption?.label || `Select ${field.label.toLowerCase()}`}
+								{t(selectedOption?.label ?? '') || `Select ${t(field.label).toLowerCase()}`}
 							</div>
 						</Select.Trigger>
 
@@ -237,13 +240,13 @@
 					<Select.Content>
 						{#if field.options}
 							{#each field.options as option (option.value)}
-								<Select.Item label={option.label} value={option.value}>
+								<Select.Item label={t(option.label)} value={option.value}>
 									<div class="flex items-center gap-2">
 										{#if option.icon}
 											{@const IconComponent = option.icon}
 											<IconComponent class={ICON_CLASS_DEFAULT} />
 										{/if}
-										{option.label}
+										{t(option.label)}
 									</div>
 								</Select.Item>
 							{/each}
@@ -253,7 +256,7 @@
 
 				{#if field.help || SETTING_CONFIG_INFO[field.key]}
 					<p class="mt-1 text-xs text-muted-foreground">
-						{field.help || SETTING_CONFIG_INFO[field.key]}
+						{t(field.help || SETTING_CONFIG_INFO[field.key])}
 					</p>
 				{/if}
 			{:else if field.type === SettingsFieldType.RADIO && field.radioOptions}
@@ -263,7 +266,7 @@
 					radioOptions[0].value}
 
 				<Label class="flex items-center gap-1.5 text-sm font-medium mb-4">
-					{field.label}
+					{t(field.label)}
 
 					{#if field.isExperimental}
 						<FlaskConical class="h-3.5 w-3.5 text-muted-foreground" />
@@ -288,7 +291,7 @@
 								class="flex cursor-pointer items-center gap-1.5 text-sm font-normal"
 								for={itemId}
 							>
-								{opt.label}
+								{t(opt.label)}
 
 								{#if opt.isExperimental}
 									<FlaskConical class="h-3.5 w-3.5 text-muted-foreground" />
@@ -300,7 +303,7 @@
 
 				{#if field.help || SETTING_CONFIG_INFO[field.key]}
 					<p class="text-xs text-muted-foreground">
-						{field.help || SETTING_CONFIG_INFO[field.key]}
+						{t(field.help || SETTING_CONFIG_INFO[field.key])}
 					</p>
 				{/if}
 			{:else if field.type === SettingsFieldType.CHECKBOX}
@@ -322,7 +325,7 @@
 								: 'cursor-pointer'}"
 							for={field.key}
 						>
-							{field.label}
+							{t(field.label)}
 
 							{#if field.isExperimental}
 								<FlaskConical class="h-3.5 w-3.5 text-muted-foreground" />
@@ -331,7 +334,7 @@
 
 						{#if field.help || SETTING_CONFIG_INFO[field.key]}
 							<p class="text-xs text-muted-foreground">
-								{field.help || SETTING_CONFIG_INFO[field.key]}
+								{t(field.help || SETTING_CONFIG_INFO[field.key])}
 							</p>
 						{/if}
 					</div>

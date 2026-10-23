@@ -16,6 +16,7 @@
 		SETTINGS_KEYS,
 		SETTINGS_SECTION_SLUGS
 	} from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { ColorMode } from '$lib/enums/ui.enums';
 	import { modelsStore, serverStore, settingsStore } from '$lib/stores';
 	import type { SettingsSection, SettingsSectionTitle } from '$lib/types';
@@ -28,6 +29,8 @@
 	}
 
 	let { initialSection, onClose, onSectionChange }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	let activeSlug = $derived(initialSection ?? 'general');
 
@@ -171,7 +174,7 @@
 								<div class="flex justify-end">
 									<Button onclick={() => window.location.reload()} variant="outline">
 										<RefreshCw class="h-3 w-3" />
-										Reload app
+										{t('settings.reload_app')}
 									</Button>
 								</div>
 							{/if}
@@ -180,7 +183,7 @@
 				</div>
 
 				<div class="mt-8 border-t border-border/30 pt-6">
-					<p class="text-xs text-muted-foreground">Settings are saved in browser's localStorage</p>
+					<p class="text-xs text-muted-foreground">{t('settings.saved_in_localstorage')}</p>
 				</div>
 			</div>
 

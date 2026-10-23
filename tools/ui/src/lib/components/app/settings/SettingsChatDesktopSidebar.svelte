@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ICON_CLASS_DEFAULT } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import type { SettingsSection, SettingsSectionTitle } from '$lib/types';
 
 	interface Props {
@@ -9,6 +10,8 @@
 	}
 
 	let { isActive, onSectionChange, sections }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 </script>
 
 <div class="sticky top-12 hidden w-64 flex-col self-start bg-background md:flex gap-6">
@@ -24,7 +27,7 @@
 			>
 				<section.icon class={ICON_CLASS_DEFAULT} />
 
-				<span class="ml-2">{section.title}</span>
+				<span class="ml-2">{t(section.title)}</span>
 			</button>
 		{/each}
 	</nav>

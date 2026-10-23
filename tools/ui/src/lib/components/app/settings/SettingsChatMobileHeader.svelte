@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ScrollCarousel } from '$lib/components/app';
 	import { ICON_CLASS_DEFAULT, UI_DATA_ATTRS } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { BooleanString } from '$lib/enums';
 	import { useScrollCarousel } from '$lib/hooks/use-scroll-carousel.svelte';
 	import type { SettingsSection, SettingsSectionTitle } from '$lib/types';
@@ -13,6 +14,8 @@
 	}
 
 	let { isActive, onSectionChange, sections }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	const carousel = useScrollCarousel();
 
@@ -53,7 +56,7 @@
 				>
 					<section.icon class="{ICON_CLASS_DEFAULT} flex-shrink-0" />
 
-					<span>{section.title}</span>
+					<span>{t(section.title)}</span>
 				</button>
 			{/each}
 		</ScrollCarousel>
