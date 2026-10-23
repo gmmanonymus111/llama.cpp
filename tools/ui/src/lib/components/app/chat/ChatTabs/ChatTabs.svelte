@@ -5,16 +5,17 @@
 	import { ScrollCarousel } from '$lib/components/app';
 	import {
 		CHAT_TABS_MAX_WIDTH,
-		NEW_CHAT_LABEL,
 		NEW_CHAT_TAB_ID,
-		UI_DATA_ATTRS,
-		UNNAMED_CHAT_LABEL
+		UI_DATA_ATTRS
 	} from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { useScrollCarousel } from '$lib/hooks/use-scroll-carousel.svelte';
 	import { chatStore, conversationsStore, tabsStore, uiStore } from '$lib/stores';
 	import { tick } from 'svelte';
 
 	const carousel = useScrollCarousel();
+
+	let { t } = $derived(i18nStore);
 
 	let activeId = $derived(page.params.id ?? NEW_CHAT_TAB_ID);
 
@@ -24,8 +25,8 @@
 			isNewChat: id === NEW_CHAT_TAB_ID,
 			name:
 				id === NEW_CHAT_TAB_ID
-					? NEW_CHAT_LABEL
-					: (conversationsStore.conversations.find((c) => c.id === id)?.name ?? UNNAMED_CHAT_LABEL)
+					? t('chat.new_chat')
+					: (conversationsStore.conversations.find((c) => c.id === id)?.name ?? t('chat.untitled'))
 		}))
 	);
 
@@ -81,7 +82,7 @@
 </script>
 
 <nav
-	aria-label="Open conversations"
+	aria-label={t('chat.open_conversations')}
 	class="group sticky pl-1 top-0 z-10 hidden md:block chat-tabs-fade transition-[padding] duration-200 ease-in-out pt-3.25 {uiStore.isSidebarExpanded
 		? CHAT_TABS_MAX_WIDTH.EXPANDED_SIDEBAR
 		: CHAT_TABS_MAX_WIDTH.COLLAPSED_SIDEBAR}"

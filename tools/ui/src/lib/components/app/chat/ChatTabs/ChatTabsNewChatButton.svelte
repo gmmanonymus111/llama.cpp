@@ -2,12 +2,14 @@
 	import { Plus } from '@lucide/svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { ICON_CLASS_DEFAULT } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		onclick?: () => void;
 	}
 
 	let { onclick }: Props = $props();
+	let { t } = $derived(i18nStore);
 </script>
 
 <Tooltip.Root>
@@ -15,7 +17,7 @@
 		{#snippet child({ props })}
 			<button
 				{...props}
-				aria-label="New chat"
+				aria-label={t('chat.new_chat')}
 				class="backdrop-blur-lg flex h-8 w-8 mr-4 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-foreground/5"
 				{onclick}
 			>
@@ -25,6 +27,6 @@
 	</Tooltip.Trigger>
 
 	<Tooltip.Content>
-		<p>New chat</p>
+		<p>{t('chat.new_chat')}</p>
 	</Tooltip.Content>
 </Tooltip.Root>

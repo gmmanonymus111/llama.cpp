@@ -17,6 +17,7 @@
 		PROMPT_CONTENT_SEPARATOR,
 		SETTING_CONFIG_DEFAULT
 	} from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import {
 		ContentPartType,
 		FileExtensionText,
@@ -101,12 +102,15 @@
 		onUploadedFileRemove,
 		onUploadedFilesChange,
 		onValueChange,
-		placeholder = 'Type a message...',
+		placeholder,
 		showAddButton = true,
 		showModelSelector = true,
 		uploadedFiles = $bindable([]),
 		value = $bindable('')
 	}: Props = $props();
+
+	let { t } = $derived(i18nStore);
+	let resolvedPlaceholder = $derived(placeholder ?? t('chat.type_message'));
 
 	// Component References
 	// Shared handle of the two input renderers (plain textarea + rich chat form input).
@@ -617,7 +621,7 @@
 				}}
 				onKeydown={handleKeydown}
 				onPaste={handlePaste}
-				{placeholder}
+				placeholder={resolvedPlaceholder}
 				{useRichInput}
 			/>
 
