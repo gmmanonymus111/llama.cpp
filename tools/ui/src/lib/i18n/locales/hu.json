@@ -274,5 +274,29 @@
     "mcp_prompt_message_with_actions": "MCP kérés üzenet műveletekkel",
     "pending_user_message": "Várakozó felhasználói üzenet",
     "send_immediately": "Azonnali küldés"
+  },
+  "navigation": {
+    "new_chat": "Új beszélgetés",
+    "search": "Keresés",
+    "models": "Modellek",
+    "mcp": "MCP",
+    "settings": "Beállítások",
+    "search_conversations": "Beszélgetések keresése...",
+    "bulk_actions": "Tömeges műveletek a kiválasztott beszélgetésekre",
+    "deselect_all": "Összes kijelölésének megszüntetése",
+    "select_all": "Összes kijelölése",
+    "selected_count": "{count} / {total} kiválasztva",
+    "unavailable_mixed_state": "Nem elérhető vegyes kijelölés esetén",
+    "unpin": "Kitűzés megszüntetése",
+    "unpin_all": "Összes kitűzésének megszüntetése",
+    "pin": "Kitűzés",
+    "pin_all": "Összes kitűzése",
+    "export_selected": "Kijelöltek exportálása",
+    "export": "Exportálás",
+    "delete_selected": "Kijelöltek törlése",
+    "exit_bulk_selection": "Tömeges kijelölés módjának elhagyása",
+    "delete_count": "{count} törlése",
+    "delete_conversations_description": "Ez a művelet nem vonható vissza. A kiválasztott beszélgetés{plural} és {possessive} üzenetei véglegesen törölve lesznek, beleértve az elágazásokat is.",
+    "delete_conversations_title": "{count} beszélgetés{plural} törlése"
   }
 }

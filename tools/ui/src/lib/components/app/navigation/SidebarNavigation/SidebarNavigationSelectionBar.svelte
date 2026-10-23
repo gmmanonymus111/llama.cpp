@@ -3,6 +3,7 @@
 	import { ActionIcon, DialogConfirmation } from '$lib/components/app';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { TooltipSide } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		class?: string;
@@ -34,6 +35,8 @@
 		visibleCount
 	}: Props = $props();
 
+	let { t } = $derived(i18nStore);
+
 	let showDeleteDialog = $state(false);
 
 	function handleDeleteClick() {
@@ -56,35 +59,35 @@
 	const pinTooltip = $derived(
 		hasSelection
 			? pinStateIsMixed
-				? 'Unavailable for mixed state selection'
+				? t('navigation.unavailable_mixed_state')
 				: someSelectedPinned
 					? selectedCount === 1
-						? 'Unpin'
-						: 'Unpin all'
+						? t('navigation.unpin')
+						: t('navigation.unpin_all')
 					: selectedCount === 1
-						? 'Pin'
-						: 'Pin all'
-			: 'Pin'
+						? t('navigation.pin')
+						: t('navigation.pin_all')
+			: t('navigation.pin')
 	);
 
 	const pinDisabled = $derived(!hasSelection || pinStateIsMixed);
 </script>
 
 <div
-	aria-label="Bulk actions for selected conversations"
+	aria-label={t('navigation.bulk_actions')}
 	class="flex items-center gap-1.5 rounded-xl border border-border/50 bg-background/50 px-2 py-1.5 shadow-sm backdrop-blur-xl {className}"
 	role="toolbar"
 >
 	<label class="flex min-w-0 cursor-pointer items-center gap-2">
 		<Checkbox
-			aria-label={isMasterChecked ? 'Deselect all' : 'Select all'}
+			aria-label={isMasterChecked ? t('navigation.deselect_all') : t('navigation.select_all')}
 			checked={isMasterChecked}
 			indeterminate={isMasterIndeterminate}
 			onCheckedChange={onSelectAllToggle}
 		/>
 
 		<span class="truncate text-xs font-medium text-muted-foreground">
-			{selectedCount} / {visibleCount} selected
+			{t('navigation.selected_count', { count: String(selectedCount), total: String(visibleCount) })}
 		</span>
 	</label>
 
@@ -104,7 +107,7 @@
 		/>
 
 		<ActionIcon
-			ariaLabel="Export selected"
+			ariaLabel={t('navigation.export_selected')}
 			class="h-7 w-7 rounded-md bg-transparent backdrop-blur-none hover:bg-accent! {hasSelection
 				? 'opacity-100'
 				: 'opacity-40'}"
@@ -113,12 +116,12 @@
 			iconSize="h-3.5 w-3.5"
 			onclick={onBulkExport}
 			size="sm"
-			tooltip={hasSelection ? 'Export' : 'Export'}
+			tooltip={t('navigation.export')}
 			tooltipSide={TooltipSide.TOP}
 		/>
 
 		<ActionIcon
-			ariaLabel="Delete selected"
+			ariaLabel={t('navigation.delete_selected')}
 			class="h-7 w-7 rounded-md bg-transparent backdrop-blur-none hover:bg-destructive/10! dark:hover:bg-destructive/20! disabled:hover:bg-transparent {hasSelection
 				? 'opacity-100'
 				: 'opacity-40'}"
@@ -127,20 +130,20 @@
 			iconSize="h-3.5 w-3.5 text-destructive"
 			onclick={handleDeleteClick}
 			size="sm"
-			tooltip="Delete selected"
+			tooltip={t('navigation.delete_selected')}
 			tooltipSide={TooltipSide.TOP}
 		/>
 
 		<div aria-hidden="true" class="mx-1 h-4 w-px bg-border"></div>
 
 		<ActionIcon
-			ariaLabel="Exit bulk selection mode"
+			ariaLabel={t('navigation.exit_bulk_selection')}
 			class="h-7 w-7 rounded-md bg-transparent backdrop-blur-none hover:bg-accent!"
 			icon={X}
 			iconSize="h-3.5 w-3.5"
 			onclick={onClose}
 			size="sm"
-			tooltip="Exit bulk selection mode"
+			tooltip={t('navigation.exit_bulk_selection')}
 			tooltipSide={TooltipSide.TOP}
 		/>
 	</div>
@@ -148,16 +151,18 @@
 
 <DialogConfirmation
 	bind:open={showDeleteDialog}
-	cancelText="Cancel"
-	confirmText={selectedCount === 1 ? 'Delete' : `Delete ${selectedCount}`}
-	description="This action cannot be undone. The selected conversation{selectedCount === 1
-		? ''
-		: 's'} and {selectedCount === 1
-		? 'its'
-		: 'their'} messages will be permanently removed, including any forks."
+	cancelText={t('common.cancel')}
+	confirmText={selectedCount === 1 ? t('chat.delete') : t('navigation.delete_count', { count: String(selectedCount) })}
+	description={t('navigation.delete_conversations_description', {
+		plural: selectedCount === 1 ? '' : 's',
+		possessive: selectedCount === 1 ? 'its' : 'their'
+	})}
 	icon={Trash2}
 	onCancel={handleDeleteCancel}
 	onConfirm={handleDeleteConfirm}
-	title="Delete {selectedCount} conversation{selectedCount === 1 ? '' : 's'}"
+	title={t('navigation.delete_conversations_title', {
+		count: String(selectedCount),
+		plural: selectedCount === 1 ? '' : 's'
+	})}
 	variant="destructive"
 />

@@ -12,6 +12,7 @@
 		SIDEBAR_ACTIONS_ITEMS
 	} from '$lib/constants';
 	import { SidebarAction, TooltipSide } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { conversationsStore, deviceStore } from '$lib/stores';
 	import type { DesktopIconStripItem } from '$lib/types';
 	import type { Component } from 'svelte';
@@ -44,6 +45,8 @@
 		onSettingsClick,
 		searchQuery = $bindable('')
 	}: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	// the models manager stays desktop-only: a phone picks its models in the selector
 	const actions = $derived(
@@ -140,7 +143,7 @@
 			bind:value={searchQuery}
 			onClose={handleSearchModeDeactivate}
 			onKeyDown={(e) => e.key === 'Escape' && handleSearchModeDeactivate()}
-			placeholder="Search conversations..."
+			placeholder={t('navigation.search_conversations')}
 		/>
 	</div>
 {:else if isExpandedMode || isOnMobile}

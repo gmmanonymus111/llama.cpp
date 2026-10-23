@@ -274,5 +274,29 @@
     "mcp_prompt_message_with_actions": "MCP Prompt message with actions",
     "pending_user_message": "Pending user message",
     "send_immediately": "Send immediately"
+  },
+  "navigation": {
+    "new_chat": "New chat",
+    "search": "Search",
+    "models": "Models",
+    "mcp": "MCP",
+    "settings": "Settings",
+    "search_conversations": "Search conversations...",
+    "bulk_actions": "Bulk actions for selected conversations",
+    "deselect_all": "Deselect all",
+    "select_all": "Select all",
+    "selected_count": "{count} / {total} selected",
+    "unavailable_mixed_state": "Unavailable for mixed state selection",
+    "unpin": "Unpin",
+    "unpin_all": "Unpin all",
+    "pin": "Pin",
+    "pin_all": "Pin all",
+    "export_selected": "Export selected",
+    "export": "Export",
+    "delete_selected": "Delete selected",
+    "exit_bulk_selection": "Exit bulk selection mode",
+    "delete_count": "Delete {count}",
+    "delete_conversations_description": "This action cannot be undone. The selected conversation{plural} and {possessive} messages will be permanently removed, including any forks.",
+    "delete_conversations_title": "Delete {count} conversation{plural}"
   }
 }
