@@ -11,6 +11,7 @@
 	import { Switch } from '$lib/components/ui/switch';
 	import { getChatMessageActionsContext, getChatMessageEditContext } from '$lib/contexts';
 	import { MessageRole } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { conversationsStore } from '$lib/stores';
 
 	interface Props {
@@ -37,6 +38,8 @@
 
 	const messageActions = getChatMessageActionsContext();
 	const editCtx = getChatMessageEditContext();
+
+	let { t } = $derived(i18nStore);
 
 	let showForkDialog = $state(false);
 	let forkName = $state('');
@@ -77,29 +80,29 @@
 		<div
 			class="pointer-events-auto inset-0 flex items-center gap-1 opacity-100 transition-all duration-150"
 		>
-			<ActionIcon icon={Copy} onclick={messageActions.copy} tooltip="Copy" />
+			<ActionIcon icon={Copy} onclick={messageActions.copy} tooltip={t('chat.copy_tooltip')} />
 
-			<ActionIcon icon={Edit} onclick={editCtx.startEdit} tooltip="Edit" />
+			<ActionIcon icon={Edit} onclick={editCtx.startEdit} tooltip={t('chat.edit_tooltip')} />
 
 			{#if role === MessageRole.ASSISTANT && onRegenerate}
-				<ActionIcon icon={RefreshCw} onclick={() => onRegenerate()} tooltip="Regenerate" />
+				<ActionIcon icon={RefreshCw} onclick={() => onRegenerate()} tooltip={t('chat.regenerate_tooltip')} />
 			{/if}
 
 			{#if role === MessageRole.ASSISTANT && onContinue}
-				<ActionIcon icon={ArrowRight} onclick={onContinue} tooltip="Continue" />
+				<ActionIcon icon={ArrowRight} onclick={onContinue} tooltip={t('chat.continue_tooltip')} />
 			{/if}
 
 			{#if messageActions.forkConversation}
-				<ActionIcon icon={GitBranch} onclick={handleOpenForkDialog} tooltip="Fork conversation" />
+				<ActionIcon icon={GitBranch} onclick={handleOpenForkDialog} tooltip={t('chat.fork_conversation_tooltip')} />
 			{/if}
 
-			<ActionIcon icon={Trash2} onclick={messageActions.requestDelete} tooltip="Delete" />
+			<ActionIcon icon={Trash2} onclick={messageActions.requestDelete} tooltip={t('chat.delete_tooltip')} />
 		</div>
 	</div>
 
 	{#if showRawOutputSwitch}
 		<div class="flex items-center gap-2">
-			<span class="text-xs text-muted-foreground">Show raw output</span>
+			<span class="text-xs text-muted-foreground">{t('chat.show_raw_output')}</span>
 
 			<Switch
 				checked={rawOutputEnabled}
@@ -110,40 +113,46 @@
 </div>
 
 <DialogConfirmation
-	cancelText="Cancel"
+	cancelText={t('common.cancel')}
 	confirmText={messageActions.deletionInfo && messageActions.deletionInfo.totalCount > 1
-		? `Delete ${messageActions.deletionInfo.totalCount} Messages`
-		: 'Delete'}
+		? t('chat.delete_count_messages', { count: String(messageActions.deletionInfo.totalCount) })
+		: t('chat.delete')}
 	description={messageActions.deletionInfo && messageActions.deletionInfo.totalCount > 1
-		? `This will delete ${messageActions.deletionInfo.totalCount} messages including: ${messageActions.deletionInfo.userMessages} user message${messageActions.deletionInfo.userMessages > 1 ? 's' : ''} and ${messageActions.deletionInfo.assistantMessages} assistant response${messageActions.deletionInfo.assistantMessages > 1 ? 's' : ''}. All messages in this branch and their responses will be permanently removed. This action cannot be undone.`
-		: 'Are you sure you want to delete this message? This action cannot be undone.'}
+		? t('chat.delete_multiple_description', {
+			count: String(messageActions.deletionInfo.totalCount),
+			user: String(messageActions.deletionInfo.userMessages),
+			users: messageActions.deletionInfo.userMessages > 1 ? 's' : '',
+			assistant: String(messageActions.deletionInfo.assistantMessages),
+			assistants: messageActions.deletionInfo.assistantMessages > 1 ? 's' : ''
+		})
+		: t('chat.delete_single_description')}
 	icon={Trash2}
 	onCancel={() => messageActions.setShowDeleteDialog(false)}
 	onConfirm={handleConfirmDelete}
 	open={messageActions.showDeleteDialog}
-	title="Delete Message"
+	title={t('chat.delete_message_title')}
 	variant="destructive"
 />
 
 <DialogConfirmation
 	bind:open={showForkDialog}
-	cancelText="Cancel"
-	confirmText="Fork"
-	description="Create a new conversation branching from this message."
+	cancelText={t('common.cancel')}
+	confirmText={t('chat.fork')}
+	description={t('chat.fork_description')}
 	icon={GitBranch}
 	onCancel={() => (showForkDialog = false)}
 	onConfirm={handleConfirmFork}
-	title="Fork Conversation"
+	title={t('chat.fork_conversation_title')}
 >
 	<div class="flex flex-col gap-4 py-2">
 		<div class="flex flex-col gap-2">
-			<Label for="fork-name">Title</Label>
+			<Label for="fork-name">{t('chat.title')}</Label>
 
 			<Input
 				bind:value={forkName}
 				class="text-foreground"
 				id="fork-name"
-				placeholder="Enter fork name"
+				placeholder={t('chat.enter_fork_name')}
 				type="text"
 			/>
 		</div>
@@ -158,7 +167,7 @@
 			/>
 
 			<Label class="cursor-pointer text-sm font-normal" for="fork-attachments">
-				Include all attachments
+				{t('chat.include_all_attachments')}
 			</Label>
 		</div>
 	</div>
