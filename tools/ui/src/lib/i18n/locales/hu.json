@@ -297,6 +297,14 @@
     "exit_bulk_selection": "Tömeges kijelölés módjának elhagyása",
     "delete_count": "{count} törlése",
     "delete_conversations_description": "Ez a művelet nem vonható vissza. A kiválasztott beszélgetés{plural} és {possessive} üzenetei véglegesen törölve lesznek, beleértve az elágazásokat is.",
-    "delete_conversations_title": "{count} beszélgetés{plural} törlése"
+    "delete_conversations_title": "{count} beszélgetés{plural} törlése",
+    "see_parent_conversation": "Szülő beszélgetés megtekintése",
+    "stop_generation": "Generálás leállítása",
+    "edit": "Szerkesztés",
+    "select": "Kijelölés",
+    "delete": "Törlés",
+    "more_actions": "További műveletek",
+    "deselect_conversation": "{name} kijelölésének megszüntetése",
+    "select_conversation": "{name} kijelölése"
   }
 }

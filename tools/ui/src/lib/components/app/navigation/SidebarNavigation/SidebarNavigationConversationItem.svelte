@@ -16,6 +16,7 @@
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { FORK_TREE_DEPTH_PADDING, ICON_CLASS_DEFAULT, UI_DATA_ATTRS } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { RouterService } from '$lib/services/router.service';
 	import { chatStore, conversationsStore } from '$lib/stores';
 	import { onMount } from 'svelte';
@@ -51,6 +52,8 @@
 		onStop,
 		onToggleSelect
 	}: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	let renderActionsDropdown = $state(false);
 	let dropdownOpen = $state(false);
@@ -179,7 +182,7 @@
 		{#if isSelectionMode}
 			<div
 				aria-checked={isSelected}
-				aria-label={isSelected ? `Deselect ${conversation.name}` : `Select ${conversation.name}`}
+				aria-label={isSelected ? t('navigation.deselect_conversation', { name: conversation.name }) : t('navigation.select_conversation', { name: conversation.name })}
 				class="shrink-0"
 				onclick={(e) => handleCheckboxClick(e)}
 				onkeydown={handleCheckboxKeydown}
@@ -187,7 +190,7 @@
 				tabindex="-1"
 			>
 				<Checkbox
-					aria-label={isSelected ? `Deselect ${conversation.name}` : `Select ${conversation.name}`}
+					aria-label={isSelected ? t('navigation.deselect_conversation', { name: conversation.name }) : t('navigation.select_conversation', { name: conversation.name })}
 					checked={isSelected}
 				/>
 			</div>
@@ -209,8 +212,8 @@
 				</Tooltip.Trigger>
 
 				<Tooltip.Content>
-					<p>See parent conversation</p>
-				</Tooltip.Content>
+										<p>{t('navigation.see_parent_conversation')}</p>
+									</Tooltip.Content>
 			</Tooltip.Root>
 		{/if}
 
@@ -218,7 +221,7 @@
 			<Tooltip.Root>
 				<Tooltip.Trigger>
 					<div
-						aria-label="Stop generation"
+						aria-label={t('navigation.stop_generation')}
 						class="stop-button flex {ICON_CLASS_DEFAULT} shrink-0 cursor-pointer items-center justify-center rounded text-muted-foreground transition-colors hover:text-foreground"
 						onclick={handleStop}
 						onkeydown={(e) => e.key === 'Enter' && handleStop(e)}
@@ -232,7 +235,7 @@
 				</Tooltip.Trigger>
 
 				<Tooltip.Content>
-					<p>Stop generation</p>
+					<p>{t('navigation.stop_generation')}</p>
 				</Tooltip.Content>
 			</Tooltip.Root>
 		{/if}
@@ -243,48 +246,48 @@
 	{#if !isSelectionMode && renderActionsDropdown}
 		<div class="actions flex items-center">
 			<DropdownMenuActions
-				bind:open={dropdownOpen}
-				actions={[
-					{
-						icon: conversation.pinned ? PinOff : Pin,
-						label: conversation.pinned ? 'Unpin' : 'Pin',
-						onclick: (e: Event) => {
-							e.stopPropagation();
-							handleTogglePin();
-						}
-					},
-					{
-						icon: Pencil,
-						label: 'Edit',
-						onclick: handleEdit,
-						shortcut: ['shift', 'cmd', 'e']
-					},
-					{
-						icon: Download,
-						label: 'Export',
-						onclick: (e: Event) => {
-							e.stopPropagation();
-							conversationsStore.downloadConversation(conversation.id);
-						},
-						shortcut: ['shift', 'cmd', 's']
-					},
-					{
-						icon: ListChecks,
-						label: 'Select',
-						onclick: handleEnterSelectionMode
-					},
-					{
-						icon: Trash2,
-						label: 'Delete',
-						onclick: handleDelete,
-						separator: true,
-						shortcut: ['shift', 'cmd', 'd'],
-						variant: 'destructive'
-					}
-				]}
-				triggerIcon={MoreHorizontal}
-				triggerTooltip="More actions"
-			/>
+								bind:open={dropdownOpen}
+								actions={[
+									{
+										icon: conversation.pinned ? PinOff : Pin,
+										label: conversation.pinned ? t('navigation.unpin') : t('navigation.pin'),
+										onclick: (e: Event) => {
+											e.stopPropagation();
+											handleTogglePin();
+										}
+									},
+									{
+										icon: Pencil,
+										label: t('navigation.edit'),
+										onclick: handleEdit,
+										shortcut: ['shift', 'cmd', 'e']
+									},
+									{
+										icon: Download,
+										label: t('navigation.export'),
+										onclick: (e: Event) => {
+											e.stopPropagation();
+											conversationsStore.downloadConversation(conversation.id);
+										},
+										shortcut: ['shift', 'cmd', 's']
+									},
+									{
+										icon: ListChecks,
+										label: t('navigation.select'),
+										onclick: handleEnterSelectionMode
+									},
+									{
+										icon: Trash2,
+										label: t('navigation.delete'),
+										onclick: handleDelete,
+										separator: true,
+										shortcut: ['shift', 'cmd', 'd'],
+										variant: 'destructive'
+									}
+								]}
+								triggerIcon={MoreHorizontal}
+								triggerTooltip={t('navigation.more_actions')}
+							/>
 		</div>
 	{/if}
 </button>

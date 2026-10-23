@@ -297,6 +297,14 @@
     "exit_bulk_selection": "Exit bulk selection mode",
     "delete_count": "Delete {count}",
     "delete_conversations_description": "This action cannot be undone. The selected conversation{plural} and {possessive} messages will be permanently removed, including any forks.",
-    "delete_conversations_title": "Delete {count} conversation{plural}"
+    "delete_conversations_title": "Delete {count} conversation{plural}",
+    "see_parent_conversation": "See parent conversation",
+    "stop_generation": "Stop generation",
+    "edit": "Edit",
+    "select": "Select",
+    "delete": "Delete",
+    "more_actions": "More actions",
+    "deselect_conversation": "Deselect {name}",
+    "select_conversation": "Select {name}"
   }
 }
