@@ -3,6 +3,7 @@
 	import SidebarNavigationSearchResults from './SidebarNavigationSearchResults.svelte';
 	import SidebarNavigationSelectionBar from './SidebarNavigationSelectionBar.svelte';
 	import { Pin } from '@lucide/svelte';
+	import { i18nStore } from '$lib/i18n';
 	import { buildConversationTree } from '$lib/utils';
 
 	interface Props {
@@ -61,6 +62,8 @@
 		visibleCount
 	}: Props = $props();
 
+	let { t } = $derived(i18nStore);
+
 	let conversationTree = $derived(buildConversationTree(filteredConversations));
 
 	let pinnedConversations = $derived(
@@ -72,7 +75,7 @@
 	);
 
 	const recentEmptyMessage = $derived(
-		searchQuery.length > 0 ? 'No results found' : 'No conversations yet'
+		searchQuery.length > 0 ? t('navigation.no_results_found') : t('navigation.no_conversations_yet')
 	);
 </script>
 
@@ -102,7 +105,7 @@
 				>
 					<Pin class="h-3.5 w-3.5" />
 
-					<span>Pinned</span>
+					<span>{t('navigation.pinned')}</span>
 				</div>
 			</div>
 
@@ -141,7 +144,7 @@
 				<div
 					class="text-muted-foreground flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium"
 				>
-					Recent conversations
+					{t('navigation.recent_conversations')}
 				</div>
 			{/if}
 
