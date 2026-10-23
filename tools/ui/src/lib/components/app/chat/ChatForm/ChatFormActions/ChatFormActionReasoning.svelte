@@ -6,6 +6,7 @@
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { ICON_CLASS_DEFAULT } from '$lib/constants';
 	import { ReasoningEffort } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useReasoningMenu } from '$lib/hooks/use-reasoning-menu.svelte';
 	import { deviceStore } from '$lib/stores';
 	import type { ReasoningEffortLevel } from '$lib/types';
@@ -19,7 +20,9 @@
 	// a phone picks the level in a drawer, where a thumb reaches it
 	let isMobile = $derived(deviceStore.isMobile);
 
-	const MAX_EFFORT_HINT = 'Maximum reasoning effort with extended context usage';
+	let { t } = $derived(i18nStore);
+
+	const MAX_EFFORT_HINT = () => t('chat.max_effort_hint');
 
 	function select(level: ReasoningEffortLevel): void {
 		reasoning.select(level);
@@ -64,7 +67,7 @@
 
 		{#if level.hasInfo}
 			<!-- no hover on a phone: the hint rides on the icon's own title there -->
-			<Info class="h-3.5 w-3.5 shrink-0 text-muted-foreground" title={MAX_EFFORT_HINT} />
+			<Info class="h-3.5 w-3.5 shrink-0 text-muted-foreground" title={MAX_EFFORT_HINT()} />
 		{/if}
 	</button>
 {/snippet}
@@ -72,7 +75,7 @@
 <!-- the level belongs to the chat, not to the model list -->
 {#if isMobile}
 	<Button
-		aria-label="Reasoning effort"
+		aria-label={t('chat.reasoning_effort')}
 		class="h-auto gap-1 rounded-sm bg-transparent! backdrop-blur-none! {isDefault
 			? 'px-1'
 			: 'px-1.75!'} py-1 text-xs max-md:h-8"
@@ -85,7 +88,7 @@
 	<Drawer.Root bind:open={isOpen}>
 		<Drawer.Content>
 			<Drawer.Header>
-				<Drawer.Title>Reasoning effort</Drawer.Title>
+				<Drawer.Title>{t('chat.reasoning_effort')}</Drawer.Title>
 			</Drawer.Header>
 
 			<div class="flex flex-col px-2 pb-4">
@@ -101,7 +104,7 @@
 			{#snippet child({ props })}
 				<Button
 					{...props}
-					aria-label="Reasoning effort"
+					aria-label={t('chat.reasoning_effort')}
 					class="h-auto gap-1 rounded-sm bg-transparent! backdrop-blur-none! {isDefault
 						? 'px-1'
 						: 'px-1.75!'} py-1 text-xs hover:bg-transparent!"
@@ -136,8 +139,8 @@
 							</Tooltip.Trigger>
 
 							<Tooltip.Content side="right">
-								<p>{MAX_EFFORT_HINT}</p>
-							</Tooltip.Content>
+													<p>{MAX_EFFORT_HINT()}</p>
+												</Tooltip.Content>
 						</Tooltip.Root>
 					{/if}
 				</DropdownMenu.Item>

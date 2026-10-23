@@ -13,6 +13,7 @@
 	import { ICON_CLASS_DEFAULT } from '$lib/constants';
 	import { setChatFormActionsContext } from '$lib/contexts';
 	import { FileTypeCategory, MessageRole } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useChatFormModel } from '$lib/hooks/use-chat-form-model.svelte';
 	import { ChatService } from '$lib/services';
 	import { chatStore, conversationsStore, settingsStore } from '$lib/stores';
@@ -54,6 +55,8 @@
 
 	let currentConfig = $derived(settingsStore.config);
 
+	let { t } = $derived(i18nStore);
+
 	const formModel = useChatFormModel();
 
 	let hasAudioModality = $derived(formModel.hasAudioModality);
@@ -62,9 +65,9 @@
 	let hasModelSelected = $derived(formModel.hasModelSelected);
 	let isSelectedModelInCache = $derived(formModel.isSelectedModelInCache);
 	let submitTooltip = $derived.by(() => {
-		if (!hasModelSelected) return 'Please select a model first';
+		if (!hasModelSelected) return t('chat.please_select_model_first');
 
-		if (!isSelectedModelInCache) return 'Selected model is not available, please select another';
+		if (!isSelectedModelInCache) return t('chat.selected_model_not_available');
 
 		return '';
 	});
@@ -181,11 +184,11 @@
 			class="group h-8 w-8 rounded-full p-0 max-md:h-9 max-md:w-9"
 			onclick={() =>
 				ChatService.stopReasoning(activeMessage?.completionId ?? '', activeMessage?.model)}
-			title="Skip reasoning"
+			title={t('chat.skip_reasoning')}
 			type="button"
 			variant="secondary"
 		>
-			<span class="sr-only">Skip reasoning</span>
+			<span class="sr-only">{t('chat.skip_reasoning')}</span>
 
 			<SkipForward
 				class="{ICON_CLASS_DEFAULT} stroke-muted-foreground group-hover:stroke-foreground"
@@ -200,7 +203,7 @@
 			type="button"
 			variant="secondary"
 		>
-			<span class="sr-only">Stop</span>
+			<span class="sr-only">{t('chat.stop')}</span>
 
 			<Square
 				class="h-8 w-8 fill-muted-foreground stroke-muted-foreground group-hover:fill-destructive group-hover:stroke-destructive hover:fill-destructive hover:stroke-destructive"

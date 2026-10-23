@@ -188,8 +188,8 @@
     "delete_conversation": "Beszélgetés törlése",
     "previous": "Előző",
     "next": "Következő",
-    "skip_reasoning": "Okos kihagyása",
-    "reasoning_effort": "Okos erőfeszítés",
+    "skip_reasoning": "Gondolkodás kihagyása",
+    "reasoning_effort": "Gondolkodási erőfeszítés",
     "choose_working_directory": "Munkakönyvtár kiválasztása",
     "context_usage": "Kontextus használat",
     "runtime_info": "Futtatási információ",
@@ -242,6 +242,11 @@
     "fork_conversation_title": "Beszélgetés elágaztatása",
     "title": "Cím",
     "enter_fork_name": "Add meg az elágazás nevét",
-    "include_all_attachments": "Minden csatolmány beillesztése"
+    "include_all_attachments": "Minden csatolmány beillesztése",
+    "delete_conversation_description": "Biztosan törölni szeretnéd ezt a beszélgetést? Ez a művelet nem vonható vissza, és véglegesen törli a beszélgetés összes üzenetét.",
+    "delete_conversation_title": "Beszélgetés törlése",
+    "max_effort_hint": "Maximális gondolkodási erőfeszítés kibővített kontextus használatával",
+    "please_select_model_first": "Kérlek, először válassz ki egy modellt",
+    "selected_model_not_available": "A kiválasztott modell nem érhető el, kérlek válassz mást"
   }
 }
