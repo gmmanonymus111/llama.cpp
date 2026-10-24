@@ -364,6 +364,9 @@
     "select_available_model": "Válassz egy elérhető modellt:",
     "close_aria": "Bezárás",
     "preview_language": "Előnézet: {language}",
-    "close_preview": "Előnézet bezárása"
+    "close_preview": "Előnézet bezárása",
+    "copy_content": "Tartalom másolása",
+    "download_content": "Tartalom letöltése",
+    "no_content_available": "Nincs elérhető tartalom"
   }
 }

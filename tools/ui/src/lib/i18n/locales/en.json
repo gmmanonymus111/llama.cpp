@@ -364,6 +364,9 @@
     "select_available_model": "Select an available model:",
     "close_aria": "Close",
     "preview_language": "Preview {language}",
-    "close_preview": "Close preview"
+    "close_preview": "Close preview",
+    "copy_content": "Copy content",
+    "download_content": "Download content",
+    "no_content_available": "No content available"
   }
 }
