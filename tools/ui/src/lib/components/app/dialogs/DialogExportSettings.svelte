@@ -3,6 +3,7 @@
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import Label from '$lib/components/ui/label/label.svelte';
+	import { i18nStore } from '$lib/i18n';
 
 	let {
 		includeSensitiveData = $bindable(false),
@@ -16,6 +17,8 @@
 		onConfirm: () => void;
 	} = $props();
 
+	let { t } = $derived(i18nStore);
+
 	function handleOpenChange(newOpen: boolean) {
 		if (!newOpen) {
 			onCancel();
@@ -27,25 +30,22 @@
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title class="flex items-center gap-2">
-				{#if includeSensitiveData}
-					<ShieldOff class="h-5 w-5 text-destructive" />
-				{:else}
-					<Shield class="h-5 w-5 text-destructive" />
-				{/if}
-				Export Settings
-			</AlertDialog.Title>
+								{#if includeSensitiveData}
+									<ShieldOff class="h-5 w-5 text-destructive" />
+								{:else}
+									<Shield class="h-5 w-5 text-destructive" />
+								{/if}
+								{t('dialogs.export_settings')}
+							</AlertDialog.Title>
 
 			<AlertDialog.Description>
 				{#if includeSensitiveData}
 					<p class="text-amber-500">
-						Warning: This export will include sensitive data such as API keys and MCP server custom
-						headers (e.g., authorization tokens). Do not share this file with anyone you don't
-						trust.
+						{t('dialogs.export_sensitive_warning')}
 					</p>
 				{:else}
 					<p>
-						Sensitive data (API keys, MCP server custom headers) will not be included in the export
-						to protect your credentials.
+						{t('dialogs.export_no_sensitive')}
 					</p>
 				{/if}
 			</AlertDialog.Description>
@@ -59,24 +59,24 @@
 				for="include-sensitive"
 			>
 				{#if includeSensitiveData}
-					<span class="text-destructive">Include sensitive data (not recommended)</span>
+					<span class="text-destructive">{t('dialogs.include_sensitive_not_recommended')}</span>
 				{:else}
-					<span>Include sensitive data</span>
+					<span>{t('dialogs.include_sensitive')}</span>
 				{/if}
 			</Label>
 		</div>
 
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel onclick={onCancel}>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Cancel onclick={onCancel}>{t('dialogs.cancel')}</AlertDialog.Cancel>
 
 			<AlertDialog.Action
 				class="bg-destructive text-white hover:bg-destructive/80"
 				onclick={onConfirm}
 			>
 				{#if includeSensitiveData}
-					Export Anyway
+					{t('dialogs.export_anyway')}
 				{:else}
-					Export Without Sensitive Data
+					{t('dialogs.export_without_sensitive')}
 				{/if}
 			</AlertDialog.Action>
 		</AlertDialog.Footer>

@@ -386,6 +386,13 @@
     "back_to_models": "Back to models",
     "manage_models_description": "Browse, load and delete the models the server can serve.",
     "discover_models": "Discover Models",
-    "model_information_description": "Details of the model, from the server or the Hub."
+    "model_information_description": "Details of the model, from the server or the Hub.",
+    "export_settings": "Export Settings",
+    "export_sensitive_warning": "Warning: This export will include sensitive data such as API keys and MCP server custom headers (e.g., authorization tokens). Do not share this file with anyone you don't trust.",
+    "export_no_sensitive": "Sensitive data (API keys, MCP server custom headers) will not be included in the export to protect your credentials.",
+    "include_sensitive_not_recommended": "Include sensitive data (not recommended)",
+    "include_sensitive": "Include sensitive data",
+    "export_anyway": "Export Anyway",
+    "export_without_sensitive": "Export Without Sensitive Data"
   }
 }

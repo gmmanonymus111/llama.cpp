@@ -385,6 +385,13 @@
     "back_to_models": "Vissza a modellekhez",
     "manage_models_description": "Tallózz, tölts be és törölj modelleket, amelyeket a szerver kiszolgálhat.",
     "discover_models": "Modellek felfedezése",
-    "model_information_description": "A modell részletei a szerverről vagy a Hubról."
+    "model_information_description": "A modell részletei a szerverről vagy a Hubról.",
+    "export_settings": "Beállítások exportálása",
+    "export_sensitive_warning": "Figyelem: Ez az export érzékeny adatokat is tartalmaz, például API kulcsokat és MCP szerver egyéni fejléceket (pl. hitelesítési tokeneket). Ne oszd meg ezt a fájlt senkivel, akiben nem bízol.",
+    "export_no_sensitive": "Az érzékeny adatok (API kulcsok, MCP szerver egyéni fejlécek) nem lesznek benne az exportban a hitelesítési adataid védelme érdekében.",
+    "include_sensitive_not_recommended": "Érzékeny adatok is (nem ajánlott)",
+    "include_sensitive": "Érzékeny adatok is",
+    "export_anyway": "Exportálás mindenképp",
+    "export_without_sensitive": "Exportálás érzékeny adatok nélkül"
   }
 }
