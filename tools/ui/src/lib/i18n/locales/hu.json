@@ -455,6 +455,7 @@
     "model_offloaded": "Modell leterhelése: {name}",
     "failed_to_offload_model": "Nem sikerült leterhelni a modellt: {name}",
     "download_finished": "Letöltés befejeződött: {name}",
-    "resources_attached": "{count} erőforrás csatolva"
+    "resources_attached": "{count} erőforrás csatolva",
+    "failed_to_pause": "Nem sikerült szüneteltetni: {name}"
   }
 }

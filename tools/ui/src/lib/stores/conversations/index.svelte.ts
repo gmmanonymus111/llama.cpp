@@ -307,7 +307,7 @@ class ConversationsStore implements ConversationsPreferencesHost {
 			await goto(ROUTES.START);
 		} catch (error) {
 			console.error('Failed to delete all conversations:', error);
-			toast.error('Failed to delete conversations');
+			toast.error(i18nStore.t('toasts.failed_to_delete_conversations'));
 		}
 	}
 

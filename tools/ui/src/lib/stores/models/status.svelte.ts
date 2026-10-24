@@ -552,7 +552,7 @@ export class ModelStatusManager {
 				this.downloadProgress.set(model, snapshot ?? emptyDownloadProgress());
 			}
 
-			toast.error(`Failed to pause: ${model}`);
+			toast.error(i18nStore.t('toasts.failed_to_pause', { name: model }));
 		}
 	}
 
