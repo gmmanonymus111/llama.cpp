@@ -373,6 +373,12 @@
     "try_again": "Próbáld újra",
     "select_resource_to_preview": "Válassz egy erőforrást az előnézethez",
     "attach_resource": "Erőforrás csatolása",
-    "attach_count": "Csatolás ({count})"
+    "attach_count": "Csatolás ({count})",
+    "add_new_mcp_server": "Új MCP szerver hozzáadása",
+    "recommended_servers": "Ajánlott szerverek",
+    "dismiss": "Elutasítás",
+    "url_required": "A URL megadása kötelező",
+    "invalid_url_format": "Érvénytelen URL formátum",
+    "add": "Hozzáadás"
   }
 }

@@ -373,6 +373,12 @@
     "try_again": "Try again",
     "select_resource_to_preview": "Select a resource to preview",
     "attach_resource": "Attach Resource",
-    "attach_count": "Attach ({count})"
+    "attach_count": "Attach ({count})",
+    "add_new_mcp_server": "Add New MCP Server",
+    "recommended_servers": "Recommended Servers",
+    "dismiss": "Dismiss",
+    "url_required": "URL is required",
+    "invalid_url_format": "Invalid URL format",
+    "add": "Add"
   }
 }

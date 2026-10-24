@@ -10,6 +10,7 @@
 		RECOMMENDED_MCP_SERVERS
 	} from '$lib/constants';
 	import { BooleanString, HealthCheckStatus } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { deviceStore, mcpStore } from '$lib/stores';
 	import { canonicalizeServerUrl, parseHeadersToArray, uuid } from '$lib/utils';
 
@@ -19,6 +20,8 @@
 	}
 
 	let { onOpenChange, open = $bindable() }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	let newServerUrl = $state('');
 	let newServerName = $state('');
@@ -70,14 +73,14 @@
 	});
 
 	let newServerUrlError = $derived.by(() => {
-		if (!newServerUrl.trim()) return 'URL is required';
+		if (!newServerUrl.trim()) return t('dialogs.url_required');
 
 		try {
 			new URL(newServerUrl);
 
 			return null;
 		} catch {
-			return 'Invalid URL format';
+			return t('dialogs.invalid_url_format');
 		}
 	});
 	let newServerHeaderPairsValid = $derived(
@@ -249,17 +252,17 @@
 		onOpenAutoFocus={(event) => deviceStore.isMobile && event.preventDefault()}
 	>
 		<Dialog.Header>
-			<Dialog.Title class="select-none">Add New MCP Server</Dialog.Title>
+			<Dialog.Title class="select-none">{t('dialogs.add_new_mcp_server')}</Dialog.Title>
 		</Dialog.Header>
 
 		{#if recommendationsToShow.length > 0}
 			<div class="space-y-3 pt-2">
 				<div class="flex items-center justify-between gap-3">
-					<h3 class="text-sm font-medium">Recommended Servers</h3>
+					<h3 class="text-sm font-medium">{t('dialogs.recommended_servers')}</h3>
 
 					<Button class="text-muted-foreground" onclick={handleDismissAll} size="sm" variant="ghost"
-						>Dismiss</Button
-					>
+												>{t('dialogs.dismiss')}</Button
+											>
 				</div>
 
 				<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -295,11 +298,11 @@
 
 			<Dialog.Footer>
 				<Button onclick={() => handleOpenChange(false)} size="sm" variant="secondary">
-					Cancel
+					{t('dialogs.cancel')}
 				</Button>
 
-				<Button aria-label="Save" disabled={!canSave} size="sm" type="submit" variant="default">
-					Add
+				<Button aria-label={t('dialogs.save')} disabled={!canSave} size="sm" type="submit" variant="default">
+					{t('dialogs.add')}
 				</Button>
 			</Dialog.Footer>
 		</form>
