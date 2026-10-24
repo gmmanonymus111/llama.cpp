@@ -367,6 +367,12 @@
     "close_preview": "Close preview",
     "copy_content": "Copy content",
     "download_content": "Download content",
-    "no_content_available": "No content available"
+    "no_content_available": "No content available",
+    "mcp_resources": "MCP Resources",
+    "mcp_resources_description": "Browse and attach resources from connected MCP servers to your chat context.",
+    "try_again": "Try again",
+    "select_resource_to_preview": "Select a resource to preview",
+    "attach_resource": "Attach Resource",
+    "attach_count": "Attach ({count})"
   }
 }

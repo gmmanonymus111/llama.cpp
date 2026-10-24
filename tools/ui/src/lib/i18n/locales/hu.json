@@ -367,6 +367,12 @@
     "close_preview": "Előnézet bezárása",
     "copy_content": "Tartalom másolása",
     "download_content": "Tartalom letöltése",
-    "no_content_available": "Nincs elérhető tartalom"
+    "no_content_available": "Nincs elérhető tartalom",
+    "mcp_resources": "MCP erőforrások",
+    "mcp_resources_description": "Tallózz és csatolj erőforrásokat a csatlakoztatott MCP szerverekről a chat kontextusodba.",
+    "try_again": "Próbáld újra",
+    "select_resource_to_preview": "Válassz egy erőforrást az előnézethez",
+    "attach_resource": "Erőforrás csatolása",
+    "attach_count": "Csatolás ({count})"
   }
 }
