@@ -457,6 +457,12 @@
     "failed_to_offload_model": "Failed to offload model: {name}",
     "download_finished": "Download finished: {name}",
     "resources_attached": "{count} resources attached",
-    "failed_to_pause": "Failed to pause: {name}"
+    "failed_to_pause": "Failed to pause: {name}",
+    "pdf_setting_changed": "PDF setting changed: Non-vision model detected, PDFs will be processed as text instead of images.",
+    "pdf_processed_as_images": "PDF \"{name}\" processed as {count} images for vision model.",
+    "pdf_processed_as_text": "PDF \"{name}\" processed as text content.",
+    "pdf_as_images_suggestion": "You can enable parsing PDF as images with vision models.",
+    "enable_pdf_as_images": "Enable PDF as Images",
+    "pdf_as_images_enabled": "PDF parsing as images enabled!"
   }
 }

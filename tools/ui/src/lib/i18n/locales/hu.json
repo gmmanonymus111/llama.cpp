@@ -456,6 +456,12 @@
     "failed_to_offload_model": "Nem sikerült leterhelni a modellt: {name}",
     "download_finished": "Letöltés befejeződött: {name}",
     "resources_attached": "{count} erőforrás csatolva",
-    "failed_to_pause": "Nem sikerült szüneteltetni: {name}"
+    "failed_to_pause": "Nem sikerült szüneteltetni: {name}",
+    "pdf_setting_changed": "PDF beállítás megváltozott: Nem-víziós modell észlelve, a PDF-ek szövegként feldolgozva lesznek képek helyett.",
+    "pdf_processed_as_images": "PDF \"{name}\" {count} képként feldolgozva víziós modellhez.",
+    "pdf_processed_as_text": "PDF \"{name}\" szövegként feldolgozva.",
+    "pdf_as_images_suggestion": "Engedélyezheted a PDF-ek képként való feldolgozását víziós modellekhez.",
+    "enable_pdf_as_images": "PDF képként engedélyezése",
+    "pdf_as_images_enabled": "PDF képként való feldolgozás engedélyezve!"
   }
 }

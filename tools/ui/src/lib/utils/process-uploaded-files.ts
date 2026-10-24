@@ -7,6 +7,7 @@ import { FileTypeCategory } from '$lib/enums';
 import { modelsStore } from '$lib/stores/models/index.svelte';
 import { settingsStore } from '$lib/stores/settings/index.svelte';
 import { getFileTypeCategory } from '$lib/utils';
+import { i18nStore } from '$lib/i18n';
 import { toast } from 'svelte-sonner';
 
 /**
@@ -113,12 +114,12 @@ export async function processFilesToChatUploaded(
 				const currentConfig = settingsStore.config;
 
 				if (hasVisionSupport && !currentConfig.pdfAsImage) {
-					toast.info(`You can enable parsing PDF as images with vision models.`, {
+					toast.info(i18nStore.t('toasts.pdf_as_images_suggestion'), {
 						action: {
-							label: 'Enable PDF as Images',
+							label: i18nStore.t('toasts.enable_pdf_as_images'),
 							onClick: () => {
 								settingsStore.updateConfig(SETTINGS_KEYS.PDF_AS_IMAGE, true);
-								toast.success('PDF parsing as images enabled!', {
+								toast.success(i18nStore.t('toasts.pdf_as_images_enabled'), {
 									duration: 3000
 								});
 							}

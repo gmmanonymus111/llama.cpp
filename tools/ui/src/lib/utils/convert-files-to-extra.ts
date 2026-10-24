@@ -8,6 +8,7 @@ import { modelsStore } from '$lib/stores/models/index.svelte';
 import { settingsStore } from '$lib/stores/settings/index.svelte';
 import type { ChatUploadedFile, DatabaseMessageExtra, FileProcessingResult } from '$lib/types';
 import { getFileTypeCategory } from '$lib/utils';
+import { i18nStore } from '$lib/i18n';
 import { toast } from 'svelte-sonner';
 
 function readFileAsBase64(file: File): Promise<string> {
@@ -127,7 +128,7 @@ export async function parseFilesToMessageExtras(
 
 					// Show toast notification to user
 					toast.warning(
-						'PDF setting changed: Non-vision model detected, PDFs will be processed as text instead of images.',
+						i18nStore.t('toasts.pdf_setting_changed'),
 						{
 							duration: 5000
 						}
@@ -143,7 +144,7 @@ export async function parseFilesToMessageExtras(
 
 						// Show success toast for PDF image processing
 						toast.success(
-							`PDF "${file.name}" processed as ${images.length} images for vision model.`,
+							i18nStore.t('toasts.pdf_processed_as_images', { name: file.name, count: String(images.length) }),
 							{
 								duration: 3000
 							}
@@ -181,7 +182,7 @@ export async function parseFilesToMessageExtras(
 					const content = await convertPDFToText(file.file);
 
 					// Show success toast for PDF text processing
-					toast.success(`PDF "${file.name}" processed as text content.`, {
+					toast.success(i18nStore.t('toasts.pdf_processed_as_text', { name: file.name }), {
 						duration: 3000
 					});
 
