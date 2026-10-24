@@ -1,6 +1,7 @@
 <script lang="ts">
 	import XIcon from '@lucide/svelte/icons/x';
 	import { Dialog as DialogPrimitive } from 'bits-ui';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		open: boolean;
@@ -10,6 +11,8 @@
 	}
 
 	let { code, language, onOpenChange, open = $bindable() }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	let iframeRef = $state<HTMLIFrameElement | null>(null);
 
@@ -36,20 +39,20 @@
 
 		<DialogPrimitive.Content class="code-preview-content">
 			<iframe
-				bind:this={iframeRef}
-				class="code-preview-iframe"
-				sandbox="allow-scripts"
-				title="Preview {language}"
-			></iframe>
+								bind:this={iframeRef}
+								class="code-preview-iframe"
+								sandbox="allow-scripts"
+								title={t('dialogs.preview_language', { language })}
+							></iframe>
 
-			<DialogPrimitive.Close
-				aria-label="Close preview"
-				class="code-preview-close absolute top-4 right-4 border-none bg-transparent text-white opacity-70 mix-blend-difference transition-opacity hover:opacity-100 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-8"
-			>
-				<XIcon />
+							<DialogPrimitive.Close
+								aria-label={t('dialogs.close_preview')}
+								class="code-preview-close absolute top-4 right-4 border-none bg-transparent text-white opacity-70 mix-blend-difference transition-opacity hover:opacity-100 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-8"
+							>
+								<XIcon />
 
-				<span class="sr-only">Close preview</span>
-			</DialogPrimitive.Close>
+								<span class="sr-only">{t('dialogs.close_preview')}</span>
+							</DialogPrimitive.Close>
 		</DialogPrimitive.Content>
 	</DialogPrimitive.Portal>
 </DialogPrimitive.Root>
