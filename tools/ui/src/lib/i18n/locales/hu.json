@@ -318,5 +318,14 @@
     "collapse_navigation": "Navigáció összecsukása",
     "close_sidebar": "Oldalsáv bezárása",
     "delete_conversation_confirm": "Törli a(z) \"{name}\" beszélgetést? Ez a művelet nem vonható vissza."
+  },
+  "dialogs": {
+    "tcp_timeout": "TCP időtúllépés",
+    "server_error": "Szerverhiba",
+    "timeout_description": "A kérés nem kapott választ a szerverről az időtúllépés előtt.",
+    "error_description": "A szerver hibával válaszolt. Nézd meg a részleteket lent.",
+    "prompt_tokens": "Prompt tokenek:",
+    "context_size": "Kontextus mérete:",
+    "close": "Bezárás"
   }
 }

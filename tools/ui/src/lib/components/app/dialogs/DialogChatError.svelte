@@ -2,6 +2,7 @@
 	import { AlertTriangle, TimerOff } from '@lucide/svelte';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { ErrorDialogType } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		open: boolean;
@@ -13,12 +14,14 @@
 
 	let { contextInfo, message, onOpenChange, open = $bindable(), type }: Props = $props();
 
+	let { t } = $derived(i18nStore);
+
 	const isTimeout = $derived(type === ErrorDialogType.TIMEOUT);
-	const title = $derived(isTimeout ? 'TCP Timeout' : 'Server Error');
+	const title = $derived(isTimeout ? t('dialogs.tcp_timeout') : t('dialogs.server_error'));
 	const description = $derived(
 		isTimeout
-			? 'The request did not receive a response from the server before timing out.'
-			: 'The server responded with an error message. Review the details below.'
+			? t('dialogs.timeout_description')
+			: t('dialogs.error_description')
 	);
 	const iconClass = $derived(isTimeout ? 'text-destructive' : 'text-amber-500');
 	const badgeClass = $derived(
@@ -55,26 +58,26 @@
 			<p class="font-medium">{message}</p>
 
 			{#if contextInfo}
-				<div class="mt-2 space-y-1 text-xs opacity-80">
-					<p>
-						<span class="font-medium">Prompt tokens:</span>
+							<div class="mt-2 space-y-1 text-xs opacity-80">
+								<p>
+									<span class="font-medium">{t('dialogs.prompt_tokens')}</span>
 
-						{contextInfo.n_prompt_tokens.toLocaleString()}
-					</p>
+									{contextInfo.n_prompt_tokens.toLocaleString()}
+								</p>
 
-					{#if contextInfo.n_ctx}
-						<p>
-							<span class="font-medium">Context size:</span>
+								{#if contextInfo.n_ctx}
+									<p>
+										<span class="font-medium">{t('dialogs.context_size')}</span>
 
-							{contextInfo.n_ctx.toLocaleString()}
-						</p>
-					{/if}
-				</div>
-			{/if}
+										{contextInfo.n_ctx.toLocaleString()}
+									</p>
+								{/if}
+							</div>
+						{/if}
 		</div>
 
 		<AlertDialog.Footer>
-			<AlertDialog.Action onclick={() => handleOpenChange(false)}>Close</AlertDialog.Action>
+			<AlertDialog.Action onclick={() => handleOpenChange(false)}>{t('dialogs.close')}</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

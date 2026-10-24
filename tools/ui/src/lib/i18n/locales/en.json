@@ -318,5 +318,14 @@
     "collapse_navigation": "Collapse navigation",
     "close_sidebar": "Close Sidebar",
     "delete_conversation_confirm": "Delete \"{name}\"? This action cannot be undone."
+  },
+  "dialogs": {
+    "tcp_timeout": "TCP Timeout",
+    "server_error": "Server Error",
+    "timeout_description": "The request did not receive a response from the server before timing out.",
+    "error_description": "The server responded with an error message. Review the details below.",
+    "prompt_tokens": "Prompt tokens:",
+    "context_size": "Context size:",
+    "close": "Close"
   }
 }
