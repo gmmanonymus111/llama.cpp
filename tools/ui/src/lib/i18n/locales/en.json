@@ -351,6 +351,12 @@
     "empty_files_cannot_process": "Empty files cannot be processed or sent to the AI model",
     "empty_files_removed": "These files have been automatically removed from your attachments",
     "try_uploading_with_content": "You can try uploading files with content instead",
-    "got_it": "Got it"
+    "got_it": "Got it",
+    "file_upload_error": "File Upload Error",
+    "file_upload_error_description": "Some files cannot be uploaded with the current model.",
+    "unsupported_file_types": "Unsupported File Types",
+    "file_type_not_supported": "File type not supported",
+    "not_supported_by_current_model": "Not supported by current model",
+    "model_supports": "This model supports:"
   }
 }

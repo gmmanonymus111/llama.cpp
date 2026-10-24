@@ -351,6 +351,12 @@
     "empty_files_cannot_process": "Az üres fájlok nem feldolgozhatók, és nem küldhetők el az AI modellnek",
     "empty_files_removed": "Ezek a fájlok automatikusan eltávolítva lettek a mellékletekből",
     "try_uploading_with_content": "Próbálj meg tartalmat tartalmazó fájlokat feltölteni helyette",
-    "got_it": "Értettem"
+    "got_it": "Értettem",
+    "file_upload_error": "Fájl feltöltési hiba",
+    "file_upload_error_description": "Néhány fájlt nem lehet feltölteni a jelenlegi modellel.",
+    "unsupported_file_types": "Nem támogatott fájltípusok",
+    "file_type_not_supported": "A fájltípus nem támogatott",
+    "not_supported_by_current_model": "A jelenlegi modell nem támogatja",
+    "model_supports": "Ezt a modellt a következők támogatják:"
   }
 }
