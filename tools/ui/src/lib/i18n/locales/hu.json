@@ -384,6 +384,7 @@
     "models": "Modellek",
     "back_to_models": "Vissza a modellekhez",
     "manage_models_description": "Tallózz, tölts be és törölj modelleket, amelyeket a szerver kiszolgálhat.",
-    "discover_models": "Modellek felfedezése"
+    "discover_models": "Modellek felfedezése",
+    "model_information_description": "A modell részletei a szerverről vagy a Hubról."
   }
 }

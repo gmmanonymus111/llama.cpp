@@ -385,6 +385,7 @@
     "models": "Models",
     "back_to_models": "Back to models",
     "manage_models_description": "Browse, load and delete the models the server can serve.",
-    "discover_models": "Discover Models"
+    "discover_models": "Discover Models",
+    "model_information_description": "Details of the model, from the server or the Hub."
   }
 }

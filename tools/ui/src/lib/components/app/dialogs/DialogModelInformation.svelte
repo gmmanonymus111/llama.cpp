@@ -2,10 +2,13 @@
 	import ModelsManagerModelConfigurationInformation from '$lib/components/app/models/ModelsManager/ModelsManagerModelConfiguration/ModelsManagerModelConfigurationInformation.svelte';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { MODEL_ICON } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 	import { HuggingFaceService } from '$lib/services';
 	import { modelsStore, uiStore } from '$lib/stores';
 	import type { HfModelDetailInfo } from '$lib/types/huggingface';
 	import { repoOf } from '$lib/utils';
+
+	let { t } = $derived(i18nStore);
 
 	// the props cache is a plain Map, so the read has to name its version to stay reactive
 	let serverProps = $derived.by(() => {
@@ -68,8 +71,8 @@
 			</Dialog.Title>
 
 			<Dialog.Description class="sr-only">
-				Details of the model, from the server or the Hub.
-			</Dialog.Description>
+								{t('dialogs.model_information_description')}
+							</Dialog.Description>
 		</Dialog.Header>
 
 		<div class="min-h-0 flex-1 overflow-y-auto">
