@@ -434,6 +434,12 @@
     "failed_to_copy_code": "Failed to copy code",
     "settings_imported": "Settings imported successfully",
     "failed_to_import_settings": "Failed to import settings",
-    "skipped_conversations": "Skipped {count} conversation{plural} already in your library"
+    "skipped_conversations": "Skipped {count} conversation{plural} already in your library",
+    "conversation_deleted": "Conversation deleted",
+    "conversations_deleted": "{count} conversations deleted",
+    "conversation_exported": "Conversation exported",
+    "conversations_exported": "{count} conversations exported",
+    "conversation_pin_toggled": "Conversation pin toggled",
+    "pin_state_updated": "Updated pin state for {count} conversations"
   }
 }

@@ -417,7 +417,7 @@
     "failed_to_load_conversations": "Nem sikerült betölteni a beszélgetéseket",
     "failed_to_delete_conversations": "Nem sikerült törölni a beszélgetéseket",
     "failed_to_export_conversations": "Nem sikerült exportálni a beszélgetéseket",
-    "failed_to_update_pin_state": "Nem sikerült frissíteni a kitűzési állapotot",
+    "failed_to_update_pin_state": "Nem sikerült frissíteni a rögzítési állapotot",
     "all_conversations_deleted": "Minden beszélgetés törölve",
     "conversation_forked": "Beszélgetés elágaztatva",
     "failed_to_fork_conversation": "Nem sikerült elágaztatni a beszélgetést",
@@ -433,6 +433,12 @@
     "failed_to_copy_code": "Nem sikerült másolni a kódot",
     "settings_imported": "Beállítások importálva",
     "failed_to_import_settings": "Nem sikerült importálni a beállításokat",
-    "skipped_conversations": "{count} beszélgetés kihagyva, mert már a könyvtáradban van"
+    "skipped_conversations": "{count} beszélgetés kihagyva, mert már a könyvtáradban van",
+    "conversation_deleted": "Beszélgetés törölve",
+    "conversations_deleted": "{count} beszélgetés törölve",
+    "conversation_exported": "Beszélgetés exportálva",
+    "conversations_exported": "{count} beszélgetés exportálva",
+    "conversation_pin_toggled": "Beszélgetés rögzítve/lerögzítve",
+    "pin_state_updated": "{count} beszélgetés rögzítési állapota frissítve"
   }
 }
