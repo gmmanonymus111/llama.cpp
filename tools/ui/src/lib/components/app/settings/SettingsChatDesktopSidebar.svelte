@@ -11,7 +11,10 @@
 
 	let { isActive, onSectionChange, sections }: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 </script>
 
 <div class="sticky top-12 hidden w-64 flex-col self-start bg-background md:flex gap-6">

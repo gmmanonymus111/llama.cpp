@@ -8,7 +8,10 @@
 	import type { HfModelDetailInfo } from '$lib/types/huggingface';
 	import { repoOf } from '$lib/utils';
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	// the props cache is a plain Map, so the read has to name its version to stay reactive
 	let serverProps = $derived.by(() => {

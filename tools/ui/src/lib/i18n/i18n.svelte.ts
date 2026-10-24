@@ -7,7 +7,10 @@
  *
  * Usage:
  *   import { i18nStore } from '$lib/i18n';
- *   let { t } = $derived(i18nStore);
+ *   let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
  *   {t('settings.title')}
  *   {t('model.loaded', { name: 'llama-3' })}
  */

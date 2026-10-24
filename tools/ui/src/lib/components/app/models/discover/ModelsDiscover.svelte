@@ -10,6 +10,7 @@
 	} from '$lib/components/app/models/discover';
 	import { Button } from '$lib/components/ui/button';
 	import { ModelDownloadConfirmAction } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { HuggingFaceService } from '$lib/services';
 	import { modelsDiscoverStore, modelsStore, uiStore } from '$lib/stores';
 	import type { HfModelInfo } from '$lib/types';
@@ -75,6 +76,10 @@
 	}
 
 	let searchTimeout: ReturnType<typeof setTimeout> | null = null;
+	let t = $derived.by(() => {
+		void i18nStore.locale;
+		return i18nStore.t.bind(i18nStore);
+	});
 
 	// load the list on mount; untrack because fetch() toggles its loading flag
 	// synchronously, and tracking it would re-run the effect on every toggle - an
@@ -133,7 +138,7 @@
 	{#if downloadEntries.length > 0 && !isSearching}
 		<ModelsSection
 			count={downloadEntries.length}
-			label="Downloading"
+			label={t('models_selector.downloading')}
 			persistKey="discover-downloads"
 			sticky
 			stickyClass="sticky z-10 bg-background"
@@ -172,18 +177,18 @@
 				<p class="text-sm text-destructive">{modelsDiscoverStore.error}</p>
 
 				<Button onclick={() => void modelsDiscoverStore.fetch()} size="sm" variant="outline">
-					Retry
+					{t('models_selector.retry')}
 				</Button>
 			</div>
 		{:else if !modelsDiscoverStore.loading && !modelsDiscoverStore.searching && modelsDiscoverStore.models.length === 0}
-			<p class="p-4 text-sm text-muted-foreground">No models found</p>
+			<p class="p-4 text-sm text-muted-foreground">{t('models_selector.no_models_found')}</p>
 		{:else}
 			{#if isSearching}
 				{@render catalog()}
 			{:else}
 				<ModelsSection
 					count={modelsDiscoverStore.models.length}
-					label="Suggested models"
+					label={t('models_selector.suggested_models')}
 					persistKey="discover-suggested"
 					sticky
 					stickyClass="sticky z-10 bg-background"

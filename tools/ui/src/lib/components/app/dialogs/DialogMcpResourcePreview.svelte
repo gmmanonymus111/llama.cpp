@@ -23,7 +23,10 @@
 
 	let { extra, onOpenChange, open = $bindable() }: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	const serverName = $derived(mcpStore.getServerDisplayName(extra.serverName));
 	const favicon = $derived(mcpStore.getServerFavicon(extra.serverName));

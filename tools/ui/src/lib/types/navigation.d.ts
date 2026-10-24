@@ -6,7 +6,8 @@ import type { Component } from 'svelte';
  */
 export interface DesktopIconStripItem {
 	icon: Component;
-	tooltip: string;
+	/** i18n key for the tooltip text */
+	tooltipKey: string;
 	route?: string;
 	/** Custom action handled by the sidebar, e.g. opening a new-chat tab */
 	action?: SidebarAction;

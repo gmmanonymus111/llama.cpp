@@ -17,7 +17,10 @@
 
 	let { action, onClose, onConfirm, open = true, repoWithTag }: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	// Both actions resolve through the same store removal (cancelDownload drops a
 	// running download's partial files or a cached model's files); only the copy

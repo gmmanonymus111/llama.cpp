@@ -14,7 +14,10 @@
 
 	let { contextInfo, message, onOpenChange, open = $bindable(), type }: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	const isTimeout = $derived(type === ErrorDialogType.TIMEOUT);
 	const title = $derived(isTimeout ? t('dialogs.tcp_timeout') : t('dialogs.server_error'));

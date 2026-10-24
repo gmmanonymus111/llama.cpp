@@ -29,7 +29,10 @@
 	const editCtx = getChatMessageEditContext();
 	const processingState = useProcessingState();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	const currentConfig = $derived(settingsStore.config);
 	const isActivelyProcessing = $derived(isLastUserMessage && chatStore.isLoading);

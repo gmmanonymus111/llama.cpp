@@ -46,7 +46,10 @@
 		searchQuery = $bindable('')
 	}: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	// the models manager stays desktop-only: a phone picks its models in the selector
 	const actions = $derived(
@@ -152,7 +155,7 @@
 			? 'hidden pointer-events-none'
 			: ''}"
 	>
-		{#each actions as item, i (item.tooltip)}
+		{#each actions as item, i (item.tooltipKey)}
 			{@const isActive = isItemActive(item)}
 			{@const isSearchOnMobile = item.icon === Search && deviceStore.isMobile}
 			{@const itemHref = isSearchOnMobile ? ROUTES.SEARCH : item.route}
@@ -179,7 +182,7 @@
 
 							{#if showIcons}
 								<span in:fade={itemTransition} out:fade={itemTransition} class="min-w-0 truncate"
-									>{item.tooltip}</span
+									>{t(item.tooltipKey)}</span
 								>
 							{/if}
 						</span>
@@ -194,7 +197,7 @@
 	</div>
 {:else}
 	<div class="{className} flex-col gap-1 hidden md:flex">
-		{#each actions as item, i (item.tooltip)}
+		{#each actions as item, i (item.tooltipKey)}
 			{@const isActive = isItemActive(item)}
 			{@const isSearchOnMobile = item.icon === Search && deviceStore.isMobile}
 			{@const itemOnClick = itemClickHandler(item, isSearchOnMobile)}
@@ -214,7 +217,7 @@
 						iconSize={ICON_CLASS_DEFAULT}
 						onclick={itemOnClick}
 						size="lg"
-						tooltip={item.tooltip}
+						tooltip={t(item.tooltipKey)}
 						tooltipSide={TooltipSide.RIGHT}
 					/>
 				</div>

@@ -15,7 +15,10 @@
 
 	const carousel = useScrollCarousel();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	let activeId = $derived(page.params.id ?? NEW_CHAT_TAB_ID);
 

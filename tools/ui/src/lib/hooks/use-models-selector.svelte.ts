@@ -1,4 +1,5 @@
 import { CHAT_INPUT_FOCUS_SELECTOR } from '$lib/constants';
+import { i18nStore } from '$lib/i18n';
 import { deviceStore, modelsStore, serverStore, uiStore } from '$lib/stores';
 import type { ModelOption } from '$lib/types/models';
 import {
@@ -112,7 +113,10 @@ export function useModelsSelector(opts: UseModelsSelectorOptions): UseModelsSele
 	const isEmpty = $derived(
 		filteredOptions.length === 0 && favoriteItems.length === 0 && loadedItems.length === 0
 	);
-	const emptyMessage = $derived(searchTerm ? 'No models found.' : 'No models yet.');
+	const emptyMessage = $derived.by(() => {
+		void i18nStore.locale;
+		return searchTerm ? i18nStore.t('models_selector.no_models_found') : i18nStore.t('models_selector.no_models_yet');
+	});
 
 	// the manager takes the focus, so the selector closes instead of sitting behind it
 	$effect(() => {

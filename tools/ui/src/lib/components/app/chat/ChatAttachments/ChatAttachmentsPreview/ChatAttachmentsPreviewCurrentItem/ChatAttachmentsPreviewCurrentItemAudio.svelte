@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Music } from '@lucide/svelte';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		currentItem: { name?: string } | null;
@@ -7,6 +8,10 @@
 	}
 
 	let { audioSrc, currentItem }: Props = $props();
+	let t = $derived.by(() => {
+		void i18nStore.locale;
+		return i18nStore.t.bind(i18nStore);
+	});
 </script>
 
 <div class="flex flex-1 items-center justify-center p-8">
@@ -18,7 +23,7 @@
 				Your browser does not support the audio element.
 			</audio>
 		{:else}
-			<p class="mb-4 text-white/70">Audio preview not available</p>
+			<p class="mb-4 text-white/70">{t('chat.audio_preview_unavailable')}</p>
 		{/if}
 
 		<p class="text-sm text-white/50">{currentItem?.name || 'Audio'}</p>

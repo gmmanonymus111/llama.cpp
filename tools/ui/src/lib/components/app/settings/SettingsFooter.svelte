@@ -3,6 +3,7 @@
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { settingsStore } from '$lib/stores';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		onReset?: () => void;
@@ -10,8 +11,11 @@
 	}
 
 	let { onReset, onSave }: Props = $props();
-
 	let showResetDialog = $state(false);
+	let t = $derived.by(() => {
+		void i18nStore.locale;
+		return i18nStore.t.bind(i18nStore);
+	});
 
 	function handleResetClick() {
 		showResetDialog = true;
@@ -34,29 +38,27 @@
 		<Button onclick={handleResetClick} variant="outline">
 			<RotateCcw class="h-3 w-3" />
 
-			Reset to default
+			{t('settings.reset_to_default')}
 		</Button>
 	</div>
 
-	<Button onclick={handleSave}>Save settings</Button>
+	<Button onclick={handleSave}>{t('settings.save_settings')}</Button>
 </div>
 
 <AlertDialog.Root bind:open={showResetDialog}>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
-			<AlertDialog.Title>Reset Settings to Default</AlertDialog.Title>
+			<AlertDialog.Title>{t('settings.reset_settings_title')}</AlertDialog.Title>
 
 			<AlertDialog.Description>
-				Are you sure you want to reset all settings to their default values? This will reset all
-				parameters to the values provided by the server's /props endpoint and remove all your custom
-				configurations.
+				{t('settings.reset_settings_description')}
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Cancel>{t('settings.cancel')}</AlertDialog.Cancel>
 
-			<AlertDialog.Action onclick={handleConfirmReset}>Reset to Default</AlertDialog.Action>
+			<AlertDialog.Action onclick={handleConfirmReset}>{t('settings.reset')}</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

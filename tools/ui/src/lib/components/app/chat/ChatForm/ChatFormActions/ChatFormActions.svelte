@@ -55,7 +55,10 @@
 
 	let currentConfig = $derived(settingsStore.config);
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	const formModel = useChatFormModel();
 

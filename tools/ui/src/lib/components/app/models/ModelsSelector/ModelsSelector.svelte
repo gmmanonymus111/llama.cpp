@@ -12,6 +12,7 @@
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { DROPDOWN_MENU_CONTENT_SEARCH_SELECTOR, MODEL_ICON, SETTINGS_KEYS } from '$lib/constants';
 	import { KeyboardKey, ServerModelStatus } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useChatFormModel } from '$lib/hooks/use-chat-form-model.svelte';
 	import { useModelsSelector } from '$lib/hooks/use-models-selector.svelte';
 	import { deviceStore, modelsStore, serverStore, settingsStore } from '$lib/stores';
@@ -43,6 +44,10 @@
 
 	let isOpen = $state(false);
 	let highlightedId = $state<string | null>(null);
+	let t = $derived.by(() => {
+		void i18nStore.locale;
+		return i18nStore.t.bind(i18nStore);
+	});
 
 	const formModel = useChatFormModel();
 
@@ -206,7 +211,7 @@
 				modelId={selectedOption.model}
 			/>
 		{:else}
-			<span class="min-w-0 font-medium">Select model</span>
+			<span class="min-w-0 font-medium">{t('models_selector.select_model')}</span>
 		{/if}
 	</span>
 
@@ -263,7 +268,7 @@
 					modelId={displayModel}
 				/>
 
-				<span class="ml-2 text-xs whitespace-nowrap opacity-70">(not available)</span>
+				<span class="ml-2 text-xs whitespace-nowrap opacity-70">{t('models_selector.not_available')}</span>
 			</button>
 		{/if}
 
@@ -289,7 +294,7 @@
 	<div class="flex items-center gap-2 text-xs text-muted-foreground">
 		<Loader2 class="h-3.5 w-3.5 animate-spin" />
 
-		Loading models...
+		{t('models_selector.loading_models')}
 	</div>
 {:else if ms.options.length === 0 && ms.isMultiModel}
 	{#if displayModel}
@@ -300,7 +305,7 @@
 			<MODEL_ICON class="h-3.5 w-3.5 shrink-0" />
 		</span>
 	{:else}
-		<span class="text-xs text-muted-foreground">No models yet.</span>
+		<span class="text-xs text-muted-foreground">{t('models_selector.no_models_yet')}</span>
 	{/if}
 {:else if ms.isMultiModel}
 	{#if isMobile}

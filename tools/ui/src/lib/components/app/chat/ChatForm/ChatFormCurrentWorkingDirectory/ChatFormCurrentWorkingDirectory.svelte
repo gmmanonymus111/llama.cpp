@@ -54,7 +54,10 @@
 		query = $bindable('')
 	}: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	// File System Access API is opt-in (Chrome / Edge / Opera): the popover
 	// exposes a "Browse" button only when available.

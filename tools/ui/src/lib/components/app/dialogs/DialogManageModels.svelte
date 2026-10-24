@@ -22,7 +22,10 @@
 
 	let { onOpenChange, open = $bindable(false) }: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	// what the user asked for, and what is actually rendered: a view change fades the
 	// current one out, swaps, then fades the next one in

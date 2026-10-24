@@ -20,7 +20,10 @@
 
 	const editCtx = getChatMessageEditContext();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	function handleEditKeydown(event: KeyboardEvent) {
 		if (event.key === KeyboardKey.ENTER && !event.shiftKey && !isIMEComposing(event)) {

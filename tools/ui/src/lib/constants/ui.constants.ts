@@ -78,22 +78,22 @@ export const SIDEBAR_ACTIONS_ITEMS: DesktopIconStripItem[] = [
 		action: SidebarAction.NEW_CHAT,
 		icon: SquarePen,
 		keys: ['shift', 'cmd', 'o'],
-		tooltip: 'New chat'
+		tooltipKey: 'navigation.new_chat'
 	},
-	{ icon: Search, keys: ['cmd', 'k'], tooltip: 'Search' },
+	{ icon: Search, keys: ['cmd', 'k'], tooltipKey: 'navigation.search' },
 	{
 		action: SidebarAction.MANAGE_MODELS,
 		icon: MODEL_ICON,
-		tooltip: 'Models'
+		tooltipKey: 'navigation.models'
 	},
 	{
 		action: SidebarAction.MCP,
 		icon: McpLogo,
-		tooltip: 'MCP'
+		tooltipKey: 'navigation.mcp'
 	},
 	{
 		action: SidebarAction.SETTINGS,
 		icon: Settings,
-		tooltip: 'Settings'
+		tooltipKey: 'navigation.settings'
 	}
 ];

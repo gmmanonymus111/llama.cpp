@@ -23,7 +23,10 @@
 
 	let { fields, localConfig, onConfigChange, onThemeChange }: Props = $props();
 
-	let { t } = $derived(i18nStore);
+	let t = $derived.by(() => {
+    void i18nStore.locale;
+    return i18nStore.t.bind(i18nStore);
+});
 
 	// discover needs the hub metadata reads, so its checkbox is read-only while discover is on
 	let hubLocked = $derived(Boolean(localConfig[SETTINGS_KEYS.ENABLE_DISCOVER_MODELS]));
@@ -111,13 +114,13 @@
 
 					{#if isCustomRealTime}
 						<button
-							aria-label="Reset to default"
+							aria-label={t('settings.reset_to_default')}
 							class="absolute top-1/2 right-2 inline-flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded transition-colors hover:bg-muted"
 							onclick={() => {
 								settingsStore.resetParameterToServerDefault(field.key);
 								onConfigChange(field.key, '');
 							}}
-							title="Reset to default"
+							title={t('settings.reset_to_default')}
 							type="button"
 						>
 							<RotateCcw class="h-3 w-3" />
@@ -223,13 +226,13 @@
 
 						{#if isCustomRealTime}
 							<button
-								aria-label="Reset to default"
+								aria-label={t('settings.reset_to_default')}
 								class="absolute top-1/2 right-8 inline-flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded transition-colors hover:bg-muted"
 								onclick={() => {
 									settingsStore.resetParameterToServerDefault(field.key);
 									onConfigChange(field.key, '');
 								}}
-								title="Reset to default"
+								title={t('settings.reset_to_default')}
 								type="button"
 							>
 								<RotateCcw class="h-3 w-3" />

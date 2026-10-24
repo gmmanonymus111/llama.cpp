@@ -68,9 +68,9 @@ export const SETTINGS_REGISTRY: SettingsSectionEntry[] = [
 				key: SETTINGS_KEYS.THEME,
 				label: 'settings.theme',
 				options: [
-					{ icon: Monitor, label: 'System', value: ColorMode.SYSTEM },
-					{ icon: Sun, label: 'Light', value: ColorMode.LIGHT },
-					{ icon: Moon, label: 'Dark', value: ColorMode.DARK }
+					{ icon: Monitor, label: 'settings.theme_system', value: ColorMode.SYSTEM },
+					{ icon: Sun, label: 'settings.theme_light', value: ColorMode.LIGHT },
+					{ icon: Moon, label: 'settings.theme_dark', value: ColorMode.DARK }
 				],
 				type: SettingsFieldType.SELECT
 			},
