@@ -393,6 +393,7 @@
     "include_sensitive_not_recommended": "Include sensitive data (not recommended)",
     "include_sensitive": "Include sensitive data",
     "export_anyway": "Export Anyway",
-    "export_without_sensitive": "Export Without Sensitive Data"
+    "export_without_sensitive": "Export Without Sensitive Data",
+    "confirm": "Confirm"
   }
 }

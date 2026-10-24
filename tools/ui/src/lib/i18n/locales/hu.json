@@ -392,6 +392,7 @@
     "include_sensitive_not_recommended": "Érzékeny adatok is (nem ajánlott)",
     "include_sensitive": "Érzékeny adatok is",
     "export_anyway": "Exportálás mindenképp",
-    "export_without_sensitive": "Exportálás érzékeny adatok nélkül"
+    "export_without_sensitive": "Exportálás érzékeny adatok nélkül",
+    "confirm": "Megerősítés"
   }
 }
