@@ -379,6 +379,11 @@
     "dismiss": "Elutasítás",
     "url_required": "A URL megadása kötelező",
     "invalid_url_format": "Érvénytelen URL formátum",
-    "add": "Hozzáadás"
+    "add": "Hozzáadás",
+    "discover": "Felfedezés",
+    "models": "Modellek",
+    "back_to_models": "Vissza a modellekhez",
+    "manage_models_description": "Tallózz, tölts be és törölj modelleket, amelyeket a szerver kiszolgálhat.",
+    "discover_models": "Modellek felfedezése"
   }
 }

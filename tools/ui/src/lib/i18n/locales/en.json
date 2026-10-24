@@ -379,6 +379,12 @@
     "dismiss": "Dismiss",
     "url_required": "URL is required",
     "invalid_url_format": "Invalid URL format",
-    "add": "Add"
+    "add": "Add",
+    "mcp_servers": "MCP Servers",
+    "discover": "Discover",
+    "models": "Models",
+    "back_to_models": "Back to models",
+    "manage_models_description": "Browse, load and delete the models the server can serve.",
+    "discover_models": "Discover Models"
   }
 }

@@ -11,6 +11,7 @@
 		SETTINGS_KEYS
 	} from '$lib/constants';
 	import { ModelsDialogView } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { modelsStore, settingsStore, uiStore } from '$lib/stores';
 	import { untrack } from 'svelte';
 
@@ -20,6 +21,8 @@
 	}
 
 	let { onOpenChange, open = $bindable(false) }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	// what the user asked for, and what is actually rendered: a view change fades the
 	// current one out, swaps, then fades the next one in
@@ -58,7 +61,7 @@
 		return () => clearTimeout(timer);
 	});
 
-	let title = $derived(view === ModelsDialogView.DISCOVER ? 'Discover' : 'Models');
+	let title = $derived(view === ModelsDialogView.DISCOVER ? t('dialogs.discover') : t('dialogs.models'));
 
 	// the sidebar's Discover entry opens this dialog on its Discover view
 	$effect(() => {
@@ -118,8 +121,8 @@
 				keeps the header's height fixed either way.
 			-->
 			<Button
-				aria-label="Back to models"
-				class="absolute top-1/2 left-1 h-7 w-7 -translate-y-1/2 transition-[opacity,visibility] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] {view ===
+								aria-label={t('dialogs.back_to_models')}
+								class="absolute top-1/2 left-1 h-7 w-7 -translate-y-1/2 transition-[opacity,visibility] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] {view ===
 				ModelsDialogView.MANAGE
 					? 'invisible opacity-0'
 					: 'visible opacity-100'}"
@@ -157,8 +160,8 @@
 			</Dialog.Title>
 
 			<Dialog.Description class="sr-only">
-				Browse, load and delete the models the server can serve.
-			</Dialog.Description>
+								{t('dialogs.manage_models_description')}
+							</Dialog.Description>
 		</Dialog.Header>
 
 		<div class="dialog-view min-h-0 flex-1" data-visible={!isSwapping}>
@@ -174,7 +177,7 @@
 							>
 								<DISCOVER_ICON class="h-3.5 w-3.5" />
 
-								Discover Models
+								{t('dialogs.discover_models')}
 							</Button>
 						{/if}
 					{/snippet}
