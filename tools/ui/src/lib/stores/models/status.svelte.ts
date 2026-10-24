@@ -21,6 +21,7 @@ import {
 } from '$lib/enums';
 import { HuggingFaceService } from '$lib/services/huggingface.service';
 import { ModelsService } from '$lib/services/models.service';
+import { i18nStore } from '$lib/i18n';
 import type { ModelPropsManager } from '$lib/stores/models/props.svelte';
 // direct imports between stores, not via the barrel, to avoid circular deps
 import { serverStore } from '$lib/stores/server.svelte';
@@ -213,7 +214,7 @@ export class ModelStatusManager {
 	 */
 	async cancelDownload(repoWithTag: string): Promise<boolean> {
 		if (!serverStore.isRouterMode) {
-			toast.error('Model downloads are only available in router mode');
+			toast.error(i18nStore.t('toasts.downloads_only_in_router_mode'));
 
 			return false;
 		}
@@ -253,7 +254,7 @@ export class ModelStatusManager {
 
 			return ok;
 		} catch (error) {
-			toast.error(`Failed to cancel: ${error instanceof Error ? error.message : 'unknown error'}`);
+			toast.error(i18nStore.t('toasts.failed_to_cancel', { error: error instanceof Error ? error.message : 'unknown error' }));
 
 			return false;
 		}
@@ -270,9 +271,9 @@ export class ModelStatusManager {
 
 		try {
 			await ModelsService.unload(modelId);
-			toast.info(`Load cancelled: ${this.host.toDisplayName(modelId)}`);
+			toast.info(i18nStore.t('toasts.load_cancelled', { name: this.host.toDisplayName(modelId) }));
 		} catch (error) {
-			toast.error(`Failed to cancel load: ${this.host.toDisplayName(modelId)}`);
+			toast.error(i18nStore.t('toasts.failed_to_cancel_load', { name: this.host.toDisplayName(modelId) }));
 
 			throw error;
 		}
@@ -292,7 +293,7 @@ export class ModelStatusManager {
 	 */
 	async downloadModel(repoWithTag: string, extraSidecars: ModelSidecar[] = []): Promise<void> {
 		if (!serverStore.isRouterMode) {
-			toast.error('Model downloads are only available in router mode');
+			toast.error(i18nStore.t('toasts.downloads_only_in_router_mode'));
 
 			return;
 		}
@@ -300,7 +301,7 @@ export class ModelStatusManager {
 		const { model, sidecar } = downloadTarget(repoWithTag);
 
 		if (sidecar && !SERVER_SIDECARS.includes(sidecar)) {
-			toast.error(`The ${sidecar} file is not downloadable from here`);
+			toast.error(i18nStore.t('toasts.sidecar_not_downloadable', { sidecar }));
 
 			return;
 		}
@@ -349,7 +350,7 @@ export class ModelStatusManager {
 			this.failedDownloads.delete(model);
 			this.downloadSidecars.set(model, sidecars);
 
-			toast.success(`Download started: ${this.host.toDisplayName(model)}`);
+			toast.success(i18nStore.t('toasts.download_started', { name: this.host.toDisplayName(model) }));
 		} catch (error) {
 			// the download did not start: the optimistic entry goes, and a resumed one
 			// stays paused rather than dropping off the list
@@ -361,7 +362,7 @@ export class ModelStatusManager {
 
 			const reason = error instanceof Error ? error.message : 'unknown error';
 
-			toast.error(`Download failed: ${model} (${reason})`);
+			toast.error(i18nStore.t('toasts.download_failed', { name: model, reason }));
 
 			throw error;
 		} finally {
@@ -501,11 +502,11 @@ export class ModelStatusManager {
 		try {
 			await ModelsService.load(modelId);
 			await reachedLoaded;
-			toast.success(`Model loaded: ${this.host.toDisplayName(modelId)}`);
+			toast.success(i18nStore.t('toasts.model_loaded', { name: this.host.toDisplayName(modelId) }));
 		} catch (error) {
 			this.rejectStatus(modelId, error instanceof Error ? error : new Error('load failed'));
 			this.host.error = error instanceof Error ? error.message : 'Failed to load model';
-			toast.error(`Failed to load model: ${this.host.toDisplayName(modelId)}`);
+			toast.error(i18nStore.t('toasts.failed_to_load_model', { name: this.host.toDisplayName(modelId) }));
 
 			throw error;
 		} finally {
@@ -521,7 +522,7 @@ export class ModelStatusManager {
 	 */
 	async pauseDownload(repoWithTag: string): Promise<void> {
 		if (!serverStore.isRouterMode) {
-			toast.error('Model downloads are only available in router mode');
+			toast.error(i18nStore.t('toasts.downloads_only_in_router_mode'));
 
 			return;
 		}
@@ -613,11 +614,11 @@ export class ModelStatusManager {
 		try {
 			await ModelsService.unload(modelId);
 			await reachedUnloaded;
-			toast.info(`Model unloaded: ${this.host.toDisplayName(modelId)}`);
+			toast.info(i18nStore.t('toasts.model_unloaded', { name: this.host.toDisplayName(modelId) }));
 		} catch (error) {
 			this.rejectStatus(modelId, error instanceof Error ? error : new Error('unload failed'));
 			this.host.error = error instanceof Error ? error.message : 'Failed to unload model';
-			toast.error(`Failed to unload model: ${this.host.toDisplayName(modelId)}`);
+			toast.error(i18nStore.t('toasts.failed_to_unload_model', { name: this.host.toDisplayName(modelId) }));
 
 			throw error;
 		} finally {
@@ -684,10 +685,10 @@ export class ModelStatusManager {
 			// the quant chips to "downloaded" without waiting for a dialog reopen
 			void this.host.fetchRouterModels();
 
-			toast.success(`Download finished: ${this.host.toDisplayName(event.model)}`);
+			toast.success(i18nStore.t('toasts.download_finished', { name: this.host.toDisplayName(event.model) }));
 		} else {
 			this.failedDownloads.add(event.model);
-			toast.error(`Download failed: ${this.host.toDisplayName(event.model)}`);
+			toast.error(i18nStore.t('toasts.download_failed', { name: this.host.toDisplayName(event.model), reason: '' }));
 		}
 	}
 

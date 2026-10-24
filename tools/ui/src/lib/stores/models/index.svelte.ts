@@ -16,6 +16,7 @@ import {
 	RECENT_MODELS_LOCALSTORAGE_KEY
 } from '$lib/constants';
 import { ServerModelStatus } from '$lib/enums';
+import { i18nStore } from '$lib/i18n';
 import { HuggingFaceService } from '$lib/services/huggingface.service';
 import { ModelsService } from '$lib/services/models.service';
 // direct imports between stores, not via the barrel, to avoid circular deps
@@ -456,7 +457,7 @@ class ModelsStore implements ModelPropsHost, ModelStatusHost {
 		try {
 			localStorage.setItem(FAVORITE_MODELS_LOCALSTORAGE_KEY, JSON.stringify([...next]));
 		} catch {
-			toast.error('Failed to save favorite models to local storage');
+			toast.error(i18nStore.t('toasts.failed_to_save_favorite_models'));
 		}
 	}
 
@@ -488,7 +489,7 @@ class ModelsStore implements ModelPropsHost, ModelStatusHost {
 				JSON.stringify(Object.fromEntries(next))
 			);
 		} catch {
-			toast.error('Failed to save the model list state to local storage');
+			toast.error(i18nStore.t('toasts.failed_to_save_model_list_state'));
 		}
 	}
 
@@ -518,7 +519,7 @@ class ModelsStore implements ModelPropsHost, ModelStatusHost {
 		try {
 			localStorage.setItem(HIDDEN_MODELS_LOCALSTORAGE_KEY, JSON.stringify([...next]));
 		} catch {
-			toast.error('Failed to save hidden models to local storage');
+			toast.error(i18nStore.t('toasts.failed_to_save_hidden_models'));
 		}
 	}
 
@@ -625,7 +626,7 @@ class ModelsStore implements ModelPropsHost, ModelStatusHost {
 
 			return raw ? new Set(JSON.parse(raw) as string[]) : new Set();
 		} catch {
-			toast.error('Failed to load favorite models from local storage');
+			toast.error(i18nStore.t('toasts.failed_to_load_favorite_models'));
 
 			return new Set();
 		}

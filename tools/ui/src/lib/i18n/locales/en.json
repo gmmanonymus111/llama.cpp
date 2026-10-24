@@ -440,6 +440,21 @@
     "conversation_exported": "Conversation exported",
     "conversations_exported": "{count} conversations exported",
     "conversation_pin_toggled": "Conversation pin toggled",
-    "pin_state_updated": "Updated pin state for {count} conversations"
+    "pin_state_updated": "Updated pin state for {count} conversations",
+    "resource_attached": "Resource attached: {name}",
+    "downloads_only_in_router_mode": "Model downloads are only available in router mode",
+    "failed_to_cancel": "Failed to cancel: {error}",
+    "load_cancelled": "Load cancelled: {name}",
+    "failed_to_cancel_load": "Failed to cancel load: {name}",
+    "sidecar_not_downloadable": "The {sidecar} file is not downloadable from here",
+    "download_started": "Download started: {name}",
+    "download_failed": "Download failed: {name} ({reason})",
+    "model_loaded": "Model loaded: {name}",
+    "failed_to_load_model": "Failed to load model: {name}",
+    "model_unloaded": "Model unloaded: {name}",
+    "failed_to_unload_model": "Failed to unload model: {name}",
+    "model_offloaded": "Model offloaded: {name}",
+    "failed_to_offload_model": "Failed to offload model: {name}",
+    "download_finished": "Download finished: {name}"
   }
 }
