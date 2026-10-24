@@ -455,6 +455,7 @@
     "failed_to_unload_model": "Failed to unload model: {name}",
     "model_offloaded": "Model offloaded: {name}",
     "failed_to_offload_model": "Failed to offload model: {name}",
-    "download_finished": "Download finished: {name}"
+    "download_finished": "Download finished: {name}",
+    "resources_attached": "{count} resources attached"
   }
 }

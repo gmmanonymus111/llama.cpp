@@ -454,6 +454,7 @@
     "failed_to_unload_model": "Nem sikerült leállítani a modell betöltését: {name}",
     "model_offloaded": "Modell leterhelése: {name}",
     "failed_to_offload_model": "Nem sikerült leterhelni a modellt: {name}",
-    "download_finished": "Letöltés befejeződött: {name}"
+    "download_finished": "Letöltés befejeződött: {name}",
+    "resources_attached": "{count} erőforrás csatolva"
   }
 }

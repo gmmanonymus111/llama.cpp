@@ -135,10 +135,10 @@
 					await mcpStore.attachResource(knownResource.uri);
 				}
 
-				toast.success(`Resource attached: ${knownResource.title || knownResource.name}`);
+				toast.success(t('toasts.resource_attached', { name: knownResource.title || knownResource.name }));
 			} else {
 				if (mcpStore.resources.isAttached(templatePreviewUri)) {
-					toast.info('Resource already attached');
+					toast.info(t('toasts.resource_already_attached'));
 					handleOpenChange(false);
 
 					return;
@@ -153,7 +153,7 @@
 
 				mcpStore.resources.updateAttachmentContent(attachment.id, templatePreviewContent);
 
-				toast.success(`Resource attached: ${resourceInfo.name}`);
+				toast.success(t('toasts.resource_attached', { name: resourceInfo.name }));
 			}
 
 			handleOpenChange(false);
@@ -235,8 +235,8 @@
 
 			toast.success(
 				count === 1
-					? `Resource attached: ${resourcesToAttach[0].name}`
-					: `${count} resources attached`
+					? t('toasts.resource_attached', { name: resourcesToAttach[0].name })
+					: t('toasts.resources_attached', { count: String(count) })
 			);
 
 			handleOpenChange(false);
