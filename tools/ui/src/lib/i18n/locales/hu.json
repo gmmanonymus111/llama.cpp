@@ -343,6 +343,14 @@
     "select_conversations_to_export": "Beszélgetések kiválasztása exportáláshoz",
     "select_conversations_to_import": "Beszélgetések kiválasztása importáláshoz",
     "export_selection_description": "Válaszd ki, mely beszélgetéseket szeretnéd exportálni. A kiválasztott beszélgetések JSON fájlként letöltődnek.",
-    "import_selection_description": "Válaszd ki, mely beszélgetéseket szeretnéd importálni. A kiválasztott beszélgetések összeolvadnak a meglévő beszélgetéseiddel."
+    "import_selection_description": "Válaszd ki, mely beszélgetéseket szeretnéd importálni. A kiválasztott beszélgetések összeolvadnak a meglévő beszélgetéseiddel.",
+    "empty_files_detected": "Üres fájlok észlelve",
+    "empty_files_description": "A következő fájlok üresek, és eltávolítva lettek a mellékletekből:",
+    "empty_files_label": "Üres fájlok:",
+    "what_happened": "Mi történt:",
+    "empty_files_cannot_process": "Az üres fájlok nem feldolgozhatók, és nem küldhetők el az AI modellnek",
+    "empty_files_removed": "Ezek a fájlok automatikusan eltávolítva lettek a mellékletekből",
+    "try_uploading_with_content": "Próbálj meg tartalmat tartalmazó fájlokat feltölteni helyette",
+    "got_it": "Értettem"
   }
 }
