@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
+	import { i18nStore } from '$lib/i18n';
 	import { fly } from 'svelte/transition';
 
 	interface Props {
@@ -30,6 +31,8 @@
 		suggestions = [],
 		value = ''
 	}: Props = $props();
+
+let { t } = $derived(i18nStore);
 </script>
 
 <div class="relative grid gap-1">
@@ -52,7 +55,7 @@
 		onfocus={onFocus}
 		oninput={(e) => onInput(e.currentTarget.value)}
 		onkeydown={onKeydown}
-		placeholder="Enter {name}"
+		placeholder={t('placeholders.enter_value', { name })}
 		type="text"
 		{value}
 	/>

@@ -6,6 +6,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { type ModalityKey } from '$lib/constants';
 	import { ModelCapability } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { deviceStore, uiStore } from '$lib/stores';
 	import type { Snippet } from 'svelte';
 
@@ -28,6 +29,8 @@
 		modalities = $bindable<ModalityKey[]>([]),
 		toolbarEnd
 	}: Props = $props();
+
+let { t } = $derived(i18nStore);
 
 	let hasFilters = $derived(hasActiveFilters(contextLimit, modalities, capabilities));
 	let filterInput = $state<HTMLInputElement | null>(null);
@@ -59,7 +62,7 @@
 		bind:ref={filterInput}
 		bind:value={filter}
 		class="w-full md:w-auto md:max-w-64"
-		placeholder="Search your models"
+		placeholder={t('models_manager.search_your_models')}
 		size={deviceStore.isMobile ? 'default' : 'sm'}
 	/>
 
@@ -78,7 +81,7 @@
 		>
 			<X class="h-3.5 w-3.5" />
 
-			Clear filters
+			{t('models_manager.clear_filters')}
 		</Button>
 	{/if}
 

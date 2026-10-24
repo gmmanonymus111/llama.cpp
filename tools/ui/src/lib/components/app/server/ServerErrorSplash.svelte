@@ -7,7 +7,8 @@
 	import Label from '$lib/components/ui/label/label.svelte';
 	import { HEADERS, ICON_CLASS_DEFAULT, ROUTES, SETTINGS_KEYS } from '$lib/constants';
 	import { KeyboardKey } from '$lib/enums';
-	import { serverStore, settingsStore } from '$lib/stores';
+	import { i18nStore } from '$lib/i18n';
+import { serverStore, settingsStore } from '$lib/stores';
 	import { fade, fly, scale } from 'svelte/transition';
 
 	interface Props {
@@ -25,6 +26,8 @@
 		showRetry = true,
 		showTroubleshooting = false
 	}: Props = $props();
+
+let { t } = $derived(i18nStore);
 
 	let isServerLoading = $derived(serverStore.loading);
 	let isAccessDeniedError = $derived(
@@ -87,9 +90,9 @@
 				apiKeyState = 'error';
 
 				if (response.status === 401 || response.status === 403) {
-					apiKeyError = 'Invalid API key - please check and try again';
+					apiKeyError = t('server_error.invalid_api_key');
 				} else {
-					apiKeyError = `Authentication failed (${response.status})`;
+					apiKeyError = t('server_error.authentication_failed', { status: String(response.status) });
 				}
 
 				// Reset to idle state after showing error (don't reload UI)
@@ -103,12 +106,12 @@
 
 			if (error instanceof Error) {
 				if (error.message.includes('fetch')) {
-					apiKeyError = 'Cannot connect to server - check if server is running';
+					apiKeyError = t('server_error.cannot_connect_to_server');
 				} else {
 					apiKeyError = error.message;
 				}
 			} else {
-				apiKeyError = 'Connection error - please try again';
+				apiKeyError = t('server_error.connection_error');
 			}
 
 			// Reset to idle state after showing error (don't reload UI)
@@ -134,7 +137,7 @@
 				<AlertTriangle class="h-8 w-8 text-destructive" />
 			</div>
 
-			<h2 class="mb-2 text-xl font-semibold">Server Connection Error</h2>
+			<h2 class="mb-2 text-xl font-semibold">{t('server_error.server_connection_error')}</h2>
 
 			<p class="mb-4 text-sm text-muted-foreground">
 				{error}
@@ -145,7 +148,7 @@
 			<div in:fly={{ delay: 200, duration: 300, y: 10 }} class="mb-4">
 				<Button class="w-full" onclick={handleShowApiKeyInput} variant="outline">
 					<Key class={ICON_CLASS_DEFAULT} />
-					Enter API Key
+					{t('server_error.enter_api_key')}
 				</Button>
 			</div>
 		{/if}
@@ -153,7 +156,7 @@
 		{#if showApiKeyInput}
 			<div in:fly={{ delay: 200, duration: 300, y: 10 }} class="mb-4 space-y-3 text-left">
 				<div class="space-y-2">
-					<Label class="text-sm font-medium" for="api-key-input">API Key</Label>
+					<Label class="text-sm font-medium" for="api-key-input">{t('server_error.api_key')}</Label>
 
 					<div class="relative">
 						<Input
@@ -167,7 +170,7 @@
 							disabled={apiKeyState === 'validating'}
 							id="api-key-input"
 							onkeydown={handleApiKeyKeydown}
-							placeholder="Enter your API key..."
+							placeholder={t('server_error.enter_your_api_key')}
 							type="password"
 						/>
 
@@ -200,7 +203,7 @@
 
 					{#if apiKeyState === 'success'}
 						<p in:fly={{ duration: 200, y: -10 }} class="text-sm text-green-600">
-							✓ API key validated successfully! Connecting...
+							{t('server_error.api_key_validated')}
 						</p>
 					{/if}
 				</div>
@@ -217,9 +220,9 @@
 							<RefreshCw class="{ICON_CLASS_DEFAULT} animate-spin" />
 							Validating...
 						{:else if apiKeyState === 'success'}
-							Success!
+							{t('server_error.success')}
 						{:else}
-							Save & Retry
+							{t('server_error.save_and_retry')}
 						{/if}
 					</Button>
 
@@ -233,7 +236,7 @@
 						}}
 						variant="outline"
 					>
-						Cancel
+						{t('server_error.cancel')}
 					</Button>
 				</div>
 			</div>
@@ -245,11 +248,11 @@
 					{#if isServerLoading}
 						<RefreshCw class="{ICON_CLASS_DEFAULT} animate-spin" />
 
-						Connecting...
+						{t('server_error.connecting')}
 					{:else}
 						<RefreshCw class={ICON_CLASS_DEFAULT} />
 
-						Retry Connection
+						{t('server_error.retry_connection')}
 					{/if}
 				</Button>
 			</div>
@@ -259,12 +262,12 @@
 			<div in:fly={{ delay: 400, duration: 300, y: 10 }} class="mt-4 text-left">
 				<details class="text-sm">
 					<summary class="cursor-pointer text-muted-foreground hover:text-foreground">
-						Troubleshooting
+						{t('server_error.troubleshooting')}
 					</summary>
 
 					<div class="mt-2 space-y-3 text-xs text-muted-foreground">
 						<div class="space-y-2">
-							<p class="mb-4 font-medium">Start the llama-server:</p>
+							<p class="mb-4 font-medium">{t('server_error.start_llama_server')}</p>
 
 							<div class="rounded bg-muted/50 px-2 py-1 font-mono text-xs">
 								<p>llama-server -hf ggml-org/gemma-3-4b-it-GGUF</p>
@@ -278,11 +281,11 @@
 						</div>
 
 						<ul class="list-disc space-y-1 pl-4">
-							<li>Check that the server is accessible at the correct URL</li>
+							<li>{t('server_error.check_server_url')}</li>
 
-							<li>Verify your network connection</li>
+							<li>{t('server_error.verify_network')}</li>
 
-							<li>Check server logs for any error messages</li>
+							<li>{t('server_error.check_server_logs')}</li>
 						</ul>
 					</div>
 				</details>

@@ -6,7 +6,8 @@
 	import { UrlProtocol } from '$lib/enums';
 	import { mcpStore } from '$lib/stores';
 	import type { KeyValuePair } from '$lib/types';
-	import { parseHeadersToArray, serializeHeaders } from '$lib/utils';
+	import { i18nStore } from '$lib/i18n';
+import { parseHeadersToArray, serializeHeaders } from '$lib/utils';
 
 	interface Props {
 		url: string;
@@ -54,6 +55,8 @@
 		useProxy = false,
 		wantsAuthorization = $bindable(false)
 	}: Props = $props();
+
+let { t } = $derived(i18nStore);
 
 	let isWebSocket = $derived(
 		url.toLowerCase().startsWith(UrlProtocol.WEBSOCKET) ||
@@ -141,7 +144,7 @@
 <div class="grid gap-2">
 	<div class="mb-4">
 		<label class="mb-2 block text-xs font-medium select-none" for="server-url-{id}">
-			Server URL <span class="text-destructive">*</span>
+			{t('mcp_server.server_url')} <span class="text-destructive">*</span>
 		</label>
 
 		<Input
@@ -161,7 +164,7 @@
 
 	<div class="mb-4">
 		<label class="mb-2 block text-xs font-medium select-none" for="server-name-{id}">
-			Display name
+			{t('mcp_server.display_name')}
 		</label>
 
 		<Input
@@ -182,7 +185,7 @@
 		/>
 
 		<span class="text-xs text-muted-foreground">
-			Authorization{#if required}
+			{t('mcp_server.authorization')}{#if required}
 				<span class="text-destructive">*</span>{/if}
 		</span>
 	</label>
@@ -195,7 +198,7 @@
 				class="pl-16"
 				id="bearer-token-{id}"
 				oninput={(e) => updateBearerToken(e.currentTarget.value)}
-				placeholder="Paste token here"
+				placeholder={t('mcp_server.paste_token')}
 				type="password"
 				value={bearerToken}
 			/>
@@ -209,19 +212,19 @@
 	{/if}
 
 	<KeyValuePairs
-		addButtonLabel="Add"
+		addButtonLabel={t('mcp_server.add')}
 		class="mt-3"
-		emptyMessage="No custom headers configured."
-		keyPlaceholder="Header name"
+		emptyMessage={t('mcp_server.no_custom_headers')}
+		keyPlaceholder={t('mcp_server.header_name')}
 		onPairsChange={(pairs) => {
 			const auth = headerPairs.find(ownedByBearerUi);
 
 			updateHeaderPairs(auth ? [...pairs, auth] : pairs);
 		}}
 		pairs={headerPairs.filter((p) => !ownedByBearerUi(p))}
-		sectionLabel="Custom Headers"
+		sectionLabel={t('mcp_server.custom_headers')}
 		sectionLabelOptional
-		valuePlaceholder="Value"
+		valuePlaceholder={t('mcp_server.value')}
 	/>
 
 	{#if !isWebSocket && onUseProxyChange}
@@ -241,7 +244,7 @@
 			/>
 
 			<span>
-				<span class="text-xs text-muted-foreground">Use llama-server proxy</span>
+				<span class="text-xs text-muted-foreground">{t('mcp_server.use_proxy')}</span>
 
 				<br />
 

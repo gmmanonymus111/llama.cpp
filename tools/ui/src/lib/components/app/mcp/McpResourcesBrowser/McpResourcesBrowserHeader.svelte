@@ -3,6 +3,7 @@
 	import { SearchInput } from '$lib/components/app/forms';
 	import { Button } from '$lib/components/ui/button';
 	import { ICON_CLASS_DEFAULT } from '$lib/constants';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		isLoading: boolean;
@@ -12,13 +13,15 @@
 	}
 
 	let { isLoading, onRefresh, onSearch, searchQuery = '' }: Props = $props();
+
+let { t } = $derived(i18nStore);
 </script>
 
 <div class="flex flex-col gap-2">
 	<div class="mb-2 flex items-center gap-4">
 		<SearchInput
 			onInput={(value) => onSearch?.(value)}
-			placeholder="Search resources..."
+			placeholder={t('mcp.search_resources')}
 			value={searchQuery}
 		/>
 
@@ -27,7 +30,7 @@
 			disabled={isLoading}
 			onclick={onRefresh}
 			size="sm"
-			title="Refresh resources"
+			title={t('mcp.refresh_resources')}
 			variant="ghost"
 		>
 			{#if isLoading}
@@ -38,5 +41,5 @@
 		</Button>
 	</div>
 
-	<h3 class="text-sm font-medium">Available resources</h3>
+	<h3 class="text-sm font-medium">{t('mcp.available_resources')}</h3>
 </div>

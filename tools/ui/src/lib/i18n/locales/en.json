@@ -473,5 +473,79 @@
     "failed_to_parse_file": "Failed to parse file: {message}",
     "failed_to_import_conversations": "Failed to import conversations",
     "failed_to_import_conversations_format": "Failed to import conversations. Please check the file format."
+  },
+  "placeholders": {
+    "enter_value": "Enter {name}",
+    "search_resources": "Search resources...",
+    "paste_token": "Paste token here",
+    "search_conversations": "Search conversations...",
+    "search_your_models": "Search your models",
+    "search_models": "Search models...",
+    "enter_api_key": "Enter your API key..."
+  },
+  "mcp": {
+    "search_resources": "Search resources...",
+    "refresh_resources": "Refresh resources",
+    "available_resources": "Available resources"
+  },
+  "mcp_server": {
+    "server_url": "Server URL",
+    "display_name": "Display name",
+    "name_reported_by_server": "Name reported by the server",
+    "authorization": "Authorization",
+    "paste_token": "Paste token here",
+    "bearer": "Bearer",
+    "add": "Add",
+    "no_custom_headers": "No custom headers configured.",
+    "header_name": "Header name",
+    "custom_headers": "Custom Headers",
+    "value": "Value",
+    "use_proxy": "Use llama-server proxy",
+    "run_with_proxy_flag": "(Run llama-server with --mcp-proxy flag)"
+  },
+  "conversation_selection": {
+    "search_conversations": "Search conversations...",
+    "selected_of_total": "{selected} of {total} selected",
+    "shown": "({shown} shown)",
+    "conversation_name": "Conversation Name",
+    "messages": "Messages",
+    "no_conversations_found": "No conversations found matching \"{query}\"",
+    "no_conversations_available": "No conversations available",
+    "untitled_conversation": "Untitled conversation",
+    "cancel": "Cancel",
+    "export": "Export",
+    "import": "Import"
+  },
+  "models_manager": {
+    "search_your_models": "Search your models",
+    "clear_filters": "Clear filters"
+  },
+  "models_selector": {
+    "select_model": "Select model",
+    "search_models": "Search models...",
+    "manage_models": "Manage models",
+    "not_available": "(not available)"
+  },
+  "server_error": {
+    "server_connection_error": "Server Connection Error",
+    "enter_api_key": "Enter API Key",
+    "api_key": "API Key",
+    "enter_your_api_key": "Enter your API key...",
+    "invalid_api_key": "Invalid API key - please check and try again",
+    "authentication_failed": "Authentication failed ({status})",
+    "cannot_connect_to_server": "Cannot connect to server - check if server is running",
+    "connection_error": "Connection error - please try again",
+    "api_key_validated": "✓ API key validated successfully! Connecting...",
+    "validating": "Validating...",
+    "success": "Success!",
+    "save_and_retry": "Save & Retry",
+    "cancel": "Cancel",
+    "connecting": "Connecting...",
+    "retry_connection": "Retry Connection",
+    "troubleshooting": "Troubleshooting",
+    "start_llama_server": "Start the llama-server:",
+    "check_server_url": "Check that the server is accessible at the correct URL",
+    "verify_network": "Verify your network connection",
+    "check_server_logs": "Check server logs for any error messages"
   }
 }

@@ -473,5 +473,79 @@
     "failed_to_parse_file": "A fájl feldolgozása sikertelen: {message}",
     "failed_to_import_conversations": "A beszélgetések importálása sikertelen",
     "failed_to_import_conversations_format": "A beszélgetések importálása sikertelen. Kérjük, ellenőrizd a fájl formátumát."
+  },
+  "placeholders": {
+    "enter_value": "Add meg: {name}",
+    "search_resources": "Erőforrások keresése...",
+    "paste_token": "Illeszd be a tokent ide",
+    "search_conversations": "Beszélgetések keresése...",
+    "search_your_models": "Modellek keresése",
+    "search_models": "Modellek keresése...",
+    "enter_api_key": "Add meg az API kulcsot..."
+  },
+  "mcp": {
+    "search_resources": "Erőforrások keresése...",
+    "refresh_resources": "Erőforrások frissítése",
+    "available_resources": "Elérhető erőforrások"
+  },
+  "mcp_server": {
+    "server_url": "Szerver URL",
+    "display_name": "Megjelenő név",
+    "name_reported_by_server": "A szerver által jelentett név",
+    "authorization": "Hitelesítés",
+    "paste_token": "Illeszd be a tokent ide",
+    "bearer": "Bearer",
+    "add": "Hozzáadás",
+    "no_custom_headers": "Nincs testreszabott fejléc beállítva.",
+    "header_name": "Fejléc neve",
+    "custom_headers": "Testreszabott fejlécek",
+    "value": "Érték",
+    "use_proxy": "llama-server proxy használata",
+    "run_with_proxy_flag": "(Indítsd a llama-server-t --mcp-proxy flaggel)"
+  },
+  "conversation_selection": {
+    "search_conversations": "Beszélgetések keresése...",
+    "selected_of_total": "{selected} / {total} kiválasztva",
+    "shown": "({shown} látható)",
+    "conversation_name": "Beszélgetés neve",
+    "messages": "Üzenetek",
+    "no_conversations_found": "Nincs \"{query}\" keresésre talált beszélgetés",
+    "no_conversations_available": "Nincs elérhető beszélgetés",
+    "untitled_conversation": "Névtelen beszélgetés",
+    "cancel": "Mégse",
+    "export": "Exportálás",
+    "import": "Importálás"
+  },
+  "models_manager": {
+    "search_your_models": "Modellek keresése",
+    "clear_filters": "Szűrők törlése"
+  },
+  "models_selector": {
+    "select_model": "Modell kiválasztása",
+    "search_models": "Modellek keresése...",
+    "manage_models": "Modellek kezelése",
+    "not_available": "(nem elérhető)"
+  },
+  "server_error": {
+    "server_connection_error": "Szerver kapcsolati hiba",
+    "enter_api_key": "API kulcs megadása",
+    "api_key": "API kulcs",
+    "enter_your_api_key": "Add meg az API kulcsot...",
+    "invalid_api_key": "Érvénytelen API kulcs - kérjük, ellenőrizd és próbáld újra",
+    "authentication_failed": "Hitelesítés sikertelen ({status})",
+    "cannot_connect_to_server": "Nem lehet csatlakozni a szerverhez - ellenőrizd, hogy fut-e a szerver",
+    "connection_error": "Kapcsolati hiba - kérjük, próbáld újra",
+    "api_key_validated": "✓ API kulcs sikeresen érvényesítve! Csatlakozás...",
+    "validating": "Érvényesítés...",
+    "success": "Sikeres!",
+    "save_and_retry": "Mentés és újrapróbálkozás",
+    "cancel": "Mégse",
+    "connecting": "Csatlakozás...",
+    "retry_connection": "Kapcsolat újrapróbálása",
+    "troubleshooting": "Hibaelhárítás",
+    "start_llama_server": "Indítsd el a llama-server-t:",
+    "check_server_url": "Ellenőrizd, hogy a szerver elérhető-e a helyes URL-en",
+    "verify_network": "Ellenőrizd a hálózati kapcsolatot",
+    "check_server_logs": "Ellenőrizd a szerver naplóit hibák után"
   }
 }
