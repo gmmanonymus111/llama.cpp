@@ -311,6 +311,12 @@
     "search_results": "Search results",
     "no_conversations_yet": "No conversations yet",
     "pinned": "Pinned",
-    "recent_conversations": "Recent conversations"
+    "recent_conversations": "Recent conversations",
+    "go_to_start": "Go to start",
+    "expand_navigation": "Expand navigation",
+    "open_sidebar": "Open Sidebar",
+    "collapse_navigation": "Collapse navigation",
+    "close_sidebar": "Close Sidebar",
+    "delete_conversation_confirm": "Delete \"{name}\"? This action cannot be undone."
   }
 }

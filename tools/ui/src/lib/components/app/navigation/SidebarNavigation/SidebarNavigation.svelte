@@ -15,6 +15,7 @@
 	} from '$lib/components/app';
 	import { ROUTES } from '$lib/constants';
 	import { TooltipSide } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { useKeyboardShortcuts } from '$lib/hooks/use-keyboard-shortcuts.svelte';
 	import { useMarqueeSelection } from '$lib/hooks/use-marquee-selection.svelte';
 	import { RouterService } from '$lib/services/router.service';
@@ -29,6 +30,8 @@
 	}
 
 	let { onSearchClick = () => {} }: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	const { handleKeydown } = useKeyboardShortcuts({
 		activateSearchMode: () => onSearchClick(),
@@ -278,7 +281,7 @@
 		if (!conversation) return;
 
 		const confirmed = window.confirm(
-			`Delete "${conversation.name}"? This action cannot be undone.`
+			t('navigation.delete_conversation_confirm', { name: conversation.name })
 		);
 
 		if (!confirmed) return;
@@ -351,7 +354,7 @@
 				tabindex="0"
 			>
 				<ActionIcon
-					ariaLabel={uiStore.isSidebarExpanded ? 'Go to start' : 'Expand navigation'}
+					ariaLabel={uiStore.isSidebarExpanded ? t('navigation.go_to_start') : t('navigation.expand_navigation')}
 					class="{uiStore.isSidebarExpanded
 						? 'bg-muted! md:bg-foreground/5!'
 						: 'bg-transparent!'} md:h-9 md:w-9 h-10 w-10 rounded-full md:hover:bg-foreground/10! pointer-events-auto"
@@ -362,7 +365,7 @@
 					iconSize="h-4.5 w-4.5 md:h-4 md:w-4"
 					onclick={uiStore.isSidebarExpanded ? undefined : toggleExpandedMode}
 					size="lg"
-					tooltip={uiStore.isSidebarExpanded ? undefined : 'Open Sidebar'}
+					tooltip={uiStore.isSidebarExpanded ? undefined : t('navigation.open_sidebar')}
 					tooltipSide={TooltipSide.RIGHT}
 				/>
 			</div>
@@ -377,13 +380,13 @@
 						: ''}"
 				>
 					<ActionIcon
-						ariaLabel="Collapse navigation"
+						ariaLabel={t('navigation.collapse_navigation')}
 						class="backdrop-blur-none md:h-9 md:w-9 h-10 w-10 rounded-full mr-1 max-md:-mr-1 max-md:-mt-1 hover:bg-accent!"
 						icon={deviceStore.isMobile ? X : PanelLeftClose}
 						iconSize="h-4 w-4"
 						onclick={toggleExpandedMode}
 						size="lg"
-						tooltip="Close Sidebar"
+						tooltip={t('navigation.close_sidebar')}
 						tooltipSide={TooltipSide.LEFT}
 					/>
 				</div>

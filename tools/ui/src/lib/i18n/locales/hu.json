@@ -311,6 +311,12 @@
     "search_results": "Keresési találatok",
     "no_conversations_yet": "Még nincsenek beszélgetések",
     "pinned": "Kitűzve",
-    "recent_conversations": "Legutóbbi beszélgetések"
+    "recent_conversations": "Legutóbbi beszélgetések",
+    "go_to_start": "Ugrás az elejére",
+    "expand_navigation": "Navigáció kibontása",
+    "open_sidebar": "Oldalsáv megnyitása",
+    "collapse_navigation": "Navigáció összecsukása",
+    "close_sidebar": "Oldalsáv bezárása",
+    "delete_conversation_confirm": "Törli a(z) \"{name}\" beszélgetést? Ez a művelet nem vonható vissza."
   }
 }
