@@ -357,6 +357,10 @@
     "unsupported_file_types": "Nem támogatott fájltípusok",
     "file_type_not_supported": "A fájltípus nem támogatott",
     "not_supported_by_current_model": "A jelenlegi modell nem támogatja",
-    "model_supports": "Ezt a modellt a következők támogatják:"
+    "model_supports": "Ezt a modellt a következők támogatják:",
+    "model_not_available": "Modell nem elérhető",
+    "model_not_available_description": "A kért modell nem található. Válassz egy elérhető modellt a folytatáshoz.",
+    "requested": "Kért:",
+    "select_available_model": "Válassz egy elérhető modellt:"
   }
 }

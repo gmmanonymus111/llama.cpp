@@ -357,6 +357,10 @@
     "unsupported_file_types": "Unsupported File Types",
     "file_type_not_supported": "File type not supported",
     "not_supported_by_current_model": "Not supported by current model",
-    "model_supports": "This model supports:"
+    "model_supports": "This model supports:",
+    "model_not_available": "Model Not Available",
+    "model_not_available_description": "The requested model could not be found. Select an available model to continue.",
+    "requested": "Requested:",
+    "select_available_model": "Select an available model:"
   }
 }
