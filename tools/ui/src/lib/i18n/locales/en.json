@@ -339,6 +339,10 @@
     "choose_new_title": "Choose a new title for this conversation.",
     "conversation_title": "Conversation title",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "select_conversations_to_export": "Select Conversations to Export",
+    "select_conversations_to_import": "Select Conversations to Import",
+    "export_selection_description": "Choose which conversations you want to export. Selected conversations will be downloaded as a JSON file.",
+    "import_selection_description": "Choose which conversations you want to import. Selected conversations will be merged with your existing conversations."
   }
 }

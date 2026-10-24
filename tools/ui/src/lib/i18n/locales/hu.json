@@ -339,6 +339,10 @@
     "choose_new_title": "Válassz új címet ehhez a beszélgetéshez.",
     "conversation_title": "Beszélgetés címe",
     "cancel": "Mégse",
-    "save": "Mentés"
+    "save": "Mentés",
+    "select_conversations_to_export": "Beszélgetések kiválasztása exportáláshoz",
+    "select_conversations_to_import": "Beszélgetések kiválasztása importáláshoz",
+    "export_selection_description": "Válaszd ki, mely beszélgetéseket szeretnéd exportálni. A kiválasztott beszélgetések JSON fájlként letöltődnek.",
+    "import_selection_description": "Válaszd ki, mely beszélgetéseket szeretnéd importálni. A kiválasztott beszélgetések összeolvadnak a meglévő beszélgetéseiddel."
   }
 }
