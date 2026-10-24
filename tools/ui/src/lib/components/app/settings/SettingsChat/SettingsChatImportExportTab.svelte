@@ -136,7 +136,7 @@
 			showExportDialog = true;
 		} catch (err) {
 			console.error('Failed to load conversations:', err);
-			alert('Failed to load conversations');
+			alert(t('errors.failed_to_load_conversations'));
 		}
 	}
 
@@ -158,7 +158,7 @@
 			showExportDialog = false;
 		} catch (err) {
 			console.error('Export failed:', err);
-			alert('Failed to export conversations');
+			alert(t('errors.failed_to_export_conversations'));
 		}
 	}
 
@@ -191,14 +191,14 @@
 					const message = err instanceof Error ? err.message : 'Unknown error';
 
 					console.error('Failed to parse file:', err);
-					alert(`Failed to parse file: ${message}`);
+					alert(t('errors.failed_to_parse_file', { message }));
 				}
 			};
 
 			input.click();
 		} catch (err) {
 			console.error('Import failed:', err);
-			alert('Failed to import conversations');
+			alert(t('errors.failed_to_import_conversations'));
 		}
 	}
 
@@ -213,9 +213,7 @@
 			// A conversation already in the database is left untouched, so the summary
 			// lists what was written and the toast accounts for the rest.
 			if (skipped.length > 0) {
-				toast.info(
-					`Skipped ${skipped.length} conversation${skipped.length === 1 ? '' : 's'} already in your library`
-				);
+				toast.info(t('toasts.skipped_conversations', { count: String(skipped.length) }));
 			}
 
 			importedConversations = imported;
@@ -224,7 +222,7 @@
 			showImportDialog = false;
 		} catch (err) {
 			console.error('Import failed:', err);
-			alert('Failed to import conversations. Please check the file format.');
+			alert(t('errors.failed_to_import_conversations_format'));
 		}
 	}
 

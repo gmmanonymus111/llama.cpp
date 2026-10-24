@@ -288,7 +288,7 @@
     "send_immediately": "Azonnali küldés"
   },
   "navigation": {
-    "new_chat": "Új beszélgetés",
+    "new_chat": "Új csevegés",
     "search": "Keresés",
     "models": "Modellek",
     "mcp": "MCP",
@@ -405,7 +405,8 @@
     "include_sensitive": "Érzékeny adatok is",
     "export_anyway": "Exportálás mindenképp",
     "export_without_sensitive": "Exportálás érzékeny adatok nélkül",
-    "confirm": "Megerősítés"
+    "confirm": "Megerősítés",
+    "mcp_servers": "MCP szerverek"
   },
   "toasts": {
     "settings_exported": "Beállítások exportálva",
@@ -463,5 +464,14 @@
     "pdf_as_images_suggestion": "Engedélyezheted a PDF-ek képként való feldolgozását víziós modellekhez.",
     "enable_pdf_as_images": "PDF képként engedélyezése",
     "pdf_as_images_enabled": "PDF képként való feldolgozás engedélyezve!"
+  },
+  "errors": {
+    "invalid_json_custom_params": "Érvénytelen JSON a testreszabott paraméterekben. Kérjük, ellenőrizd a formátumot és próbáld újra.",
+    "invalid_numeric_value": "Érvénytelen numerikus érték: {field}. Kérjük, adj meg egy érvényes számot.",
+    "failed_to_load_conversations": "A beszélgetések betöltése sikertelen",
+    "failed_to_export_conversations": "A beszélgetések exportálása sikertelen",
+    "failed_to_parse_file": "A fájl feldolgozása sikertelen: {message}",
+    "failed_to_import_conversations": "A beszélgetések importálása sikertelen",
+    "failed_to_import_conversations_format": "A beszélgetések importálása sikertelen. Kérjük, ellenőrizd a fájl formátumát."
   }
 }

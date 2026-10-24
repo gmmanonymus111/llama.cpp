@@ -97,7 +97,7 @@
 			try {
 				JSON.parse(localConfig.customJson);
 			} catch (error) {
-				alert('Invalid JSON in custom parameters. Please check the format and try again.');
+				alert(t('errors.invalid_json_custom_params'));
 				console.error(error);
 
 				return;
@@ -123,7 +123,7 @@
 						processedConfig[field] = numValue;
 					}
 				} else {
-					alert(`Invalid numeric value for ${field}. Please enter a valid number.`);
+					alert(t('errors.invalid_numeric_value', { field }));
 
 					return;
 				}

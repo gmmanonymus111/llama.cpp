@@ -464,5 +464,14 @@
     "pdf_as_images_suggestion": "You can enable parsing PDF as images with vision models.",
     "enable_pdf_as_images": "Enable PDF as Images",
     "pdf_as_images_enabled": "PDF parsing as images enabled!"
+  },
+  "errors": {
+    "invalid_json_custom_params": "Invalid JSON in custom parameters. Please check the format and try again.",
+    "invalid_numeric_value": "Invalid numeric value for {field}. Please enter a valid number.",
+    "failed_to_load_conversations": "Failed to load conversations",
+    "failed_to_export_conversations": "Failed to export conversations",
+    "failed_to_parse_file": "Failed to parse file: {message}",
+    "failed_to_import_conversations": "Failed to import conversations",
+    "failed_to_import_conversations_format": "Failed to import conversations. Please check the file format."
   }
 }
