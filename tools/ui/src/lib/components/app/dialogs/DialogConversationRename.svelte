@@ -3,6 +3,7 @@
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
+	import { i18nStore } from '$lib/i18n';
 
 	interface Props {
 		open: boolean;
@@ -19,6 +20,8 @@
 		open = $bindable(),
 		value = $bindable('')
 	}: Props = $props();
+
+	let { t } = $derived(i18nStore);
 
 	let inputRef = $state<HTMLInputElement | null>(null);
 
@@ -55,15 +58,15 @@
 		<AlertDialog.Header>
 			<AlertDialog.Title class="flex items-center gap-2">
 				<Pencil class="h-5 w-5" />
-				Rename conversation
+				{t('dialogs.rename_conversation')}
 			</AlertDialog.Title>
 
-			<AlertDialog.Description>Choose a new title for this conversation.</AlertDialog.Description>
+			<AlertDialog.Description>{t('dialogs.choose_new_title')}</AlertDialog.Description>
 		</AlertDialog.Header>
 
 		<form class="space-y-2 pt-2 pb-4" onsubmit={handleSubmit}>
 			<label class="text-sm font-medium text-muted-foreground" for="conversation-rename-input">
-				Conversation title
+				{t('dialogs.conversation_title')}
 			</label>
 
 			<Input
@@ -73,15 +76,15 @@
 				autocorrect="off"
 				id="conversation-rename-input"
 				maxlength={200}
-				placeholder="Conversation title"
+				placeholder={t('dialogs.conversation_title')}
 				spellcheck={false}
 			/>
 		</form>
 
 		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Cancel>{t('dialogs.cancel')}</AlertDialog.Cancel>
 
-			<Button disabled={!canSubmit} onclick={handleSubmit} type="button">Save</Button>
+			<Button disabled={!canSubmit} onclick={handleSubmit} type="button">{t('dialogs.save')}</Button>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>

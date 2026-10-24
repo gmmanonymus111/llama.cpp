@@ -334,6 +334,11 @@
     "keep_model": "Keep model",
     "delete": "Delete",
     "delete_model_description": "This permanently removes {name} from disk. You can download it again later.",
-    "delete_model_title": "Delete model"
+    "delete_model_title": "Delete model",
+    "rename_conversation": "Rename conversation",
+    "choose_new_title": "Choose a new title for this conversation.",
+    "conversation_title": "Conversation title",
+    "cancel": "Cancel",
+    "save": "Save"
   }
 }

@@ -334,6 +334,11 @@
     "keep_model": "Modell megtartása",
     "delete": "Törlés",
     "delete_model_description": "Ez véglegesen eltávolítja a(z) {name} modellt a lemezről. Később újra letöltheted.",
-    "delete_model_title": "Modell törlése"
+    "delete_model_title": "Modell törlése",
+    "rename_conversation": "Beszélgetés átnevezése",
+    "choose_new_title": "Válassz új címet ehhez a beszélgetéshez.",
+    "conversation_title": "Beszélgetés címe",
+    "cancel": "Mégse",
+    "save": "Mentés"
   }
 }
