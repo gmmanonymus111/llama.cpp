@@ -326,6 +326,14 @@
     "error_description": "The server responded with an error message. Review the details below.",
     "prompt_tokens": "Prompt tokens:",
     "context_size": "Context size:",
-    "close": "Close"
+    "close": "Close",
+    "keep_downloading": "Keep downloading",
+    "cancel_download": "Cancel download",
+    "cancel_download_description": "This stops the download of {name} and removes the partial files. Pause it instead to keep the progress.",
+    "cancel_download_title": "Cancel download",
+    "keep_model": "Keep model",
+    "delete": "Delete",
+    "delete_model_description": "This permanently removes {name} from disk. You can download it again later.",
+    "delete_model_title": "Delete model"
   }
 }

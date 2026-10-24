@@ -326,6 +326,14 @@
     "error_description": "A szerver hibával válaszolt. Nézd meg a részleteket lent.",
     "prompt_tokens": "Prompt tokenek:",
     "context_size": "Kontextus mérete:",
-    "close": "Bezárás"
+    "close": "Bezárás",
+    "keep_downloading": "Letöltés folytatása",
+    "cancel_download": "Letöltés megszüntetése",
+    "cancel_download_description": "Ez leállítja a(z) {name} letöltését és törli a részleges fájlokat. Szüneteltetés helyett szüneteltesd a folyamatot.",
+    "cancel_download_title": "Letöltés megszüntetése",
+    "keep_model": "Modell megtartása",
+    "delete": "Törlés",
+    "delete_model_description": "Ez véglegesen eltávolítja a(z) {name} modellt a lemezről. Később újra letöltheted.",
+    "delete_model_title": "Modell törlése"
   }
 }

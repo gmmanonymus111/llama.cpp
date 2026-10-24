@@ -1,6 +1,7 @@
 <script lang="ts">
 	import DialogConfirmation from '$lib/components/app/dialogs/DialogConfirmation.svelte';
 	import { ModelDownloadConfirmAction } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { modelsStore } from '$lib/stores';
 
 	interface Props {
@@ -16,24 +17,26 @@
 
 	let { action, onClose, onConfirm, open = true, repoWithTag }: Props = $props();
 
+	let { t } = $derived(i18nStore);
+
 	// Both actions resolve through the same store removal (cancelDownload drops a
 	// running download's partial files or a cached model's files); only the copy
 	// differs. One component so the discover chips and the selector rows word the
 	// destructive confirmations identically.
 	const COPY = {
 		[ModelDownloadConfirmAction.CANCEL]: {
-			cancelText: 'Keep downloading',
-			confirmText: 'Cancel download',
+			cancelText: () => t('dialogs.keep_downloading'),
+			confirmText: () => t('dialogs.cancel_download'),
 			description: (name: string) =>
-				`This stops the download of ${name} and removes the partial files. Pause it instead to keep the progress.`,
-			title: 'Cancel download'
+				t('dialogs.cancel_download_description', { name }),
+			title: () => t('dialogs.cancel_download_title')
 		},
 		[ModelDownloadConfirmAction.DELETE]: {
-			cancelText: 'Keep model',
-			confirmText: 'Delete',
+			cancelText: () => t('dialogs.keep_model'),
+			confirmText: () => t('dialogs.delete'),
 			description: (name: string) =>
-				`This permanently removes ${name} from disk. You can download it again later.`,
-			title: 'Delete model'
+				t('dialogs.delete_model_description', { name }),
+			title: () => t('dialogs.delete_model_title')
 		}
 	} as const;
 
@@ -49,12 +52,12 @@
 </script>
 
 <DialogConfirmation
-	cancelText={copy.cancelText}
-	confirmText={copy.confirmText}
+	cancelText={copy.cancelText()}
+	confirmText={copy.confirmText()}
 	description={copy.description(displayName)}
 	onCancel={onClose}
 	onConfirm={confirm}
 	{open}
-	title={copy.title}
+	title={copy.title()}
 	variant="destructive"
 />
