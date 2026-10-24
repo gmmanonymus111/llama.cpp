@@ -361,6 +361,7 @@
     "model_not_available": "Model Not Available",
     "model_not_available_description": "The requested model could not be found. Select an available model to continue.",
     "requested": "Requested:",
-    "select_available_model": "Select an available model:"
+    "select_available_model": "Select an available model:",
+    "close_aria": "Close"
   }
 }

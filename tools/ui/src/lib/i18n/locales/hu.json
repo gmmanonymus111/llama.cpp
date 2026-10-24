@@ -361,6 +361,7 @@
     "model_not_available": "Modell nem elérhető",
     "model_not_available_description": "A kért modell nem található. Válassz egy elérhető modellt a folytatáshoz.",
     "requested": "Kért:",
-    "select_available_model": "Válassz egy elérhető modellt:"
+    "select_available_model": "Válassz egy elérhető modellt:",
+    "close_aria": "Bezárás"
   }
 }
