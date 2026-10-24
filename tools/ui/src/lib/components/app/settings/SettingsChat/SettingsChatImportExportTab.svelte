@@ -8,11 +8,14 @@
 	} from '$lib/components/app';
 	import SettingsGroup from '$lib/components/app/settings/SettingsGroup.svelte';
 	import { ConversationSelectionMode, FileExtensionText, HtmlInputType } from '$lib/enums';
+	import { i18nStore } from '$lib/i18n';
 	import { ConversationTransferService } from '$lib/services';
 	import { conversationsStore, settingsStore } from '$lib/stores';
 	import { createMessageCountMap } from '$lib/utils';
 	import { fade } from 'svelte/transition';
 	import { toast } from 'svelte-sonner';
+
+	let { t } = $derived(i18nStore);
 
 	let exportedConversations = $state<DatabaseConversation[]>([]);
 	let importedConversations = $state<DatabaseConversation[]>([]);
@@ -59,10 +62,10 @@
 
 			showSettingsExportSummary = true;
 			showSettingsImportSummary = false;
-			toast.success('Settings exported');
+			toast.success(t('toasts.settings_exported'));
 		} catch (err) {
 			console.error('Failed to export settings:', err);
-			toast.error('Failed to export settings');
+			toast.error(t('toasts.failed_to_export_settings'));
 		}
 	}
 
@@ -87,7 +90,7 @@
 					const data = JSON.parse(text);
 
 					if (!data || typeof data !== 'object' || !data.config) {
-						toast.error('Invalid settings file: missing config');
+						toast.error(t('toasts.invalid_settings_file'));
 
 						return;
 					}
@@ -96,17 +99,17 @@
 
 					showSettingsImportSummary = true;
 					showSettingsExportSummary = false;
-					toast.success('Settings imported successfully');
+					toast.success(t('toasts.settings_imported'));
 				} catch (err) {
 					console.error('Failed to import settings:', err);
-					toast.error('Failed to import settings');
+					toast.error(t('toasts.failed_to_import_settings'));
 				}
 			};
 
 			input.click();
 		} catch (err) {
 			console.error('Failed to open file picker:', err);
-			toast.error('Failed to open file picker');
+			toast.error(t('toasts.failed_to_open_file_picker'));
 		}
 	}
 
@@ -115,7 +118,7 @@
 			const allConversations = conversationsStore.conversations;
 
 			if (allConversations.length === 0) {
-				toast.info('No conversations to export');
+				toast.info(t('toasts.no_conversations_to_export'));
 
 				return;
 			}
@@ -230,7 +233,7 @@
 			const allConversations = conversationsStore.conversations;
 
 			if (allConversations.length === 0) {
-				toast.info('No conversations to delete');
+				toast.info(t('toasts.no_conversations_to_delete'));
 
 				return;
 			}
@@ -238,7 +241,7 @@
 			showDeleteDialog = true;
 		} catch (err) {
 			console.error('Failed to load conversations for deletion:', err);
-			toast.error('Failed to load conversations');
+			toast.error(t('toasts.failed_to_load_conversations'));
 		}
 	}
 
@@ -258,54 +261,54 @@
 </script>
 
 <div in:fade={{ duration: 150 }} class="space-y-12">
-	<SettingsGroup title="Conversations">
+	<SettingsGroup title={t('settings.conversations')}>
 		<SettingsChatImportExportSection
 			IconComponent={Download}
-			buttonText="Export conversations"
-			description="Download your conversations as a ZIP of JSONL files. This includes all messages, attachments, and conversation history."
+			buttonText={t('settings.export_conversations')}
+			description={t('settings.export_conversations_description')}
 			onclick={handleExportClick}
-			summary={{ items: exportedConversations, show: showExportSummary, verb: 'Exported' }}
-			title="Export"
+			summary={{ items: exportedConversations, show: showExportSummary, verb: t('settings.exported') }}
+			title={t('settings.export')}
 		/>
 
 		<SettingsChatImportExportSection
 			IconComponent={Upload}
-			buttonText="Import conversations"
-			description="Import one or more conversations from a previously exported ZIP or JSONL file. This will merge with your existing conversations."
+			buttonText={t('settings.import_conversations')}
+			description={t('settings.import_conversations_description')}
 			onclick={handleImportClick}
-			summary={{ items: importedConversations, show: showImportSummary, verb: 'Imported' }}
-			title="Import"
+			summary={{ items: importedConversations, show: showImportSummary, verb: t('settings.imported') }}
+			title={t('settings.import')}
 		/>
 
 		<SettingsChatImportExportSection
 			IconComponent={Trash2}
 			buttonClass="text-destructive-foreground justify-start justify-self-start bg-destructive hover:bg-destructive/80 md:w-auto"
-			buttonText="Delete all conversations"
+			buttonText={t('settings.delete_all_conversations')}
 			buttonVariant="destructive"
-			description="Permanently delete all conversations and their messages. This action cannot be undone. Consider exporting your conversations first if you want to keep a backup."
+			description={t('settings.delete_all_conversations_description')}
 			onclick={handleDeleteAllClick}
-			title="Delete All"
+			title={t('settings.delete_all')}
 			titleClass="text-destructive"
 		/>
 	</SettingsGroup>
 
-	<SettingsGroup title="Settings">
+	<SettingsGroup title={t('settings.title')}>
 		<SettingsChatImportExportSection
 			IconComponent={Download}
-			buttonText="Export settings"
-			description="Export your chat settings and preferences as a JSON file."
+			buttonText={t('settings.export_settings')}
+			description={t('settings.export_settings_description')}
 			onclick={handleSettingsExport}
-			summary={{ items: [], show: showSettingsExportSummary, verb: 'Exported' }}
-			title="Export"
+			summary={{ items: [], show: showSettingsExportSummary, verb: t('settings.exported') }}
+			title={t('settings.export')}
 		/>
 
 		<SettingsChatImportExportSection
 			IconComponent={Upload}
-			buttonText="Import settings"
-			description="Import chat settings from a previously exported JSON file. This will merge with your existing settings."
+			buttonText={t('settings.import_settings')}
+			description={t('settings.import_settings_description')}
 			onclick={handleSettingsImport}
-			summary={{ items: [], show: showSettingsImportSummary, verb: 'Imported' }}
-			title="Import"
+			summary={{ items: [], show: showSettingsImportSummary, verb: t('settings.imported') }}
+			title={t('settings.import')}
 		/>
 	</SettingsGroup>
 </div>
@@ -336,13 +339,13 @@
 />
 
 <DialogConfirmation
-	bind:open={showDeleteDialog}
-	cancelText="Cancel"
-	confirmText="Delete All"
-	description="Are you sure you want to delete all conversations? This action cannot be undone and will permanently remove all your conversations and messages."
-	icon={Trash2}
-	onCancel={handleDeleteAllCancel}
-	onConfirm={handleDeleteAllConfirm}
-	title="Delete all conversations"
-	variant="destructive"
-/>
+		bind:open={showDeleteDialog}
+		cancelText={t('dialogs.cancel')}
+		confirmText={t('settings.delete_all')}
+		description={t('settings.delete_all_conversations_confirm')}
+		icon={Trash2}
+		onCancel={handleDeleteAllCancel}
+		onConfirm={handleDeleteAllConfirm}
+		title={t('settings.delete_all_conversations')}
+		variant="destructive"
+	/>

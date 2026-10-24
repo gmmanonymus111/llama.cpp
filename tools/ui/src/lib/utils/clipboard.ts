@@ -1,4 +1,5 @@
 import { AttachmentType } from '$lib/enums';
+import { i18nStore } from '$lib/i18n';
 import type {
 	ClipboardAttachment,
 	ClipboardMcpPromptAttachment,
@@ -22,14 +23,19 @@ import { toast } from 'svelte-sonner';
  */
 export async function copyToClipboard(
 	text: string,
-	successMessage = 'Copied to clipboard',
-	errorMessage = 'Failed to copy to clipboard'
+	successMessage?: string,
+	errorMessage?: string
 ): Promise<boolean> {
+	const { t } = i18nStore;
+
+	const resolvedSuccessMessage = successMessage ?? t('toasts.copied_to_clipboard');
+	const resolvedErrorMessage = errorMessage ?? t('toasts.failed_to_copy_to_clipboard');
+
 	try {
 		// Try modern clipboard API first (secure contexts only)
 		if (navigator.clipboard && navigator.clipboard.writeText) {
 			await navigator.clipboard.writeText(text);
-			toast.success(successMessage);
+			toast.success(resolvedSuccessMessage);
 
 			return true;
 		}
@@ -50,7 +56,7 @@ export async function copyToClipboard(
 		document.body.removeChild(textArea);
 
 		if (successful) {
-			toast.success(successMessage);
+			toast.success(resolvedSuccessMessage);
 
 			return true;
 		} else {
@@ -58,7 +64,7 @@ export async function copyToClipboard(
 		}
 	} catch (error) {
 		console.error('Failed to copy to clipboard:', error);
-		toast.error(errorMessage);
+		toast.error(resolvedErrorMessage);
 
 		return false;
 	}
@@ -73,10 +79,15 @@ export async function copyToClipboard(
  */
 export async function copyCodeToClipboard(
 	rawCode: string,
-	successMessage = 'Code copied to clipboard',
-	errorMessage = 'Failed to copy code'
+	successMessage?: string,
+	errorMessage?: string
 ): Promise<boolean> {
-	return copyToClipboard(rawCode, successMessage, errorMessage);
+	const { t } = i18nStore;
+
+	const resolvedSuccessMessage = successMessage ?? t('toasts.code_copied_to_clipboard');
+	const resolvedErrorMessage = errorMessage ?? t('toasts.failed_to_copy_code');
+
+	return copyToClipboard(rawCode, resolvedSuccessMessage, resolvedErrorMessage);
 }
 
 /**
